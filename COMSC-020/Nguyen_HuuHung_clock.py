@@ -7,24 +7,22 @@
 # Library
 import turtle
 
-# Create a screen
+# Open window
 wn = turtle.Screen()
 
-# Draw a clock
+# Draw clock
 clock = turtle.Turtle()
 clock.shape('turtle')
-clock.stamp()
-clock.hideturtle()
-clock.penup()
+clock.up()
 for i in range(12):
     clock.forward(117)
-    clock.pendown()
+    clock.down()
     clock.forward(10)
-    clock.penup()
+    clock.up()
     clock.forward(20)
     clock.stamp()
-    clock.backward(147)
+    clock.goto(0, 0)
     clock.right(360 / 12)
     
-# Exit screen on click
+# Close window
 wn.exitonclick()
