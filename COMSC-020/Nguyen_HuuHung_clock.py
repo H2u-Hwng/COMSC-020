@@ -9,11 +9,14 @@ import turtle
 
 # Open window
 wn = turtle.Screen()
+wn.bgcolor('lightgreen')
 
 # Draw clock
 clock = turtle.Turtle()
 clock.shape('turtle')
 clock.up()
+clock.color('blue')
+clock.pensize(3)
 for i in range(12):
     clock.forward(117)
     clock.down()
