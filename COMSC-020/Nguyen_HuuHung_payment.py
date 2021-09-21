@@ -7,7 +7,7 @@
 
 
 # Prompt user for principal
-p = float(input('Enter amount of loan: $'))
+principal = float(input('Enter amount of loan: $'))
 
 # Prompt user for annual interest rate as a percent 
 annual_rate = float(input('Enter annual interest rate as a percent: '))
@@ -16,16 +16,16 @@ annual_rate = float(input('Enter annual interest rate as a percent: '))
 years = int(input('Enter number of years for the loan: '))
 
 # Calculate monthly interest rate
-r = (annual_rate / 12) / 100 
+monthly_rate = (annual_rate / 12) / 100 
 
 # Calculate number of months of the loan
-n = years * 12
+months = years * 12
 
 # Common subformula
-common = (1 + r)**n
+subformula = (1 + monthly_rate)**months
 
 # Calculate monthly payment on the loan
-payment = p * r * common / (common - 1)
+payment = principal * monthly_rate * subformula / (subformula - 1)
 
 # Print result
 print('Your monthly payment is ${:.2f}'. format(payment))

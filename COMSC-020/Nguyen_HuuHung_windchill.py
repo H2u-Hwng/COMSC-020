@@ -7,14 +7,15 @@
 
 
 # Prompt user for temperature in Celsius
-t = float(input('Enter temperature in degrees Celsius: '))
+temp = float(input('Enter temperature in degrees Celsius: '))
 
 # Prompt user for wind velocity in kilometers per hour
-v = float(input('Enter wind velocity in kilometers/hour: '))
+wind_velocity = float(input('Enter wind velocity in kilometers/hour: '))
 
 # Calculate wind chill temperature
-t_wc = 13.12 + (0.6215 * t) - (11.37 * v**0.16) + (0.3965 * t * v**0.16)
+wind_chill_temp = 13.12 + (0.6215 * temp) - (11.37 * wind_velocity**0.16) \
+                  + (0.3965 * temp * wind_velocity**0.16)
 
 # Print result
 print('The wind chill temperature in degrees Celsius is {:.3f}.'.
-      format(t_wc))
+      format(wind_chill_temp))
