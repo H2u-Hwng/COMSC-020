@@ -1,23 +1,26 @@
 # Huu Hung Nguyen
 # 09/16/2021
 # Nguyen_HuuHung_house.py
-
+# The program draws the house.
 
 # Library
 import turtle
 
-# Creat window
+# Create window
 wn = turtle.Screen()
 
-# Draw house
+# Create turtle named house
 house = turtle.Turtle()
+
+# Draw square
 for n in range(4):
     house.forward(150)
-    house.right(90)
+    house.right(360 / 4)
+    
+# Draw triangle
 for n in range(3):
     house.forward(150)
-    house.left(120)
+    house.left(360 / 3)
     
-    
-# Close window
+# Exit window
 wn.exitonclick()
