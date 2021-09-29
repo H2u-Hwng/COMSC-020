@@ -3,7 +3,6 @@
 # Nguyen_HuuHung_clock.py
 # Draw a clock.
 
-
 # Library
 import turtle
 
