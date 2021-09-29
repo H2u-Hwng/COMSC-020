@@ -3,8 +3,10 @@
 # Nguyen_HuuHung_57Exercises.py
 # Do 19.
 
+# https://runestone.academy/runestone/books/published/thinkcspy/PythonModules/Exercises.html
 # 19
 # https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
+
 s = []
 for n in range(101):
     ele = ((4 / (n * 8 + 1)) - (2 / (n * 8 + 4)) -
