@@ -3,7 +3,6 @@
 # Nguyen_HuuHung_star.py
 # Draw a star.
 
-
 # Library
 import turtle
 
