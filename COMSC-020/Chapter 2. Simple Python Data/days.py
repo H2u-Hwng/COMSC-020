@@ -1,11 +1,10 @@
 # Huu Hung Nguyen
 # 09/17/2021
-# Nguyen_HuuHung_days.py
+# days.py
 # The program prompts the user for the starting day
 # and the length of staying day.
 # It the calculates the numeber of day of the week returning
 # and prints the result.
-
 
 # Prompt user for starting day
 starting_day = int(input('Enter the starting day \
