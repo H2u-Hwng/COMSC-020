@@ -1,15 +1,14 @@
 # Huu Hung Nguyen
 # 09/14/2021
-# Nguyen_HuuHung_prices.py
+# prices.py
 # The program assumes the sales tax.
 # It prompts the user for the number of items purchased,
 # and the price of each item.
 # It then displays the subtotal of the sale, the amount of sales tax,
 # and the total cost.
 
-
 # Assume sales tax is 7 percent
-SALES_TAX_RATE = 7 / 100
+SALES_TAX_RATE = 0.07
 
 # Assign subtotal
 subtotal = 0
