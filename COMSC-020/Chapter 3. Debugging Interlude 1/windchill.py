@@ -1,10 +1,9 @@
 # Huu Hung Nguyen
 # 09/19/2021
-# Nguyen_HuuHung_windchill.py
+# windchill.py
 # The program prompts the user for the temperature in Celsius,
 # and the wind velocity in kilometers per hour.
 # It then calculates the wind chill temperature and prints the result.
-
 
 # Prompt user for temperature in Celsius
 temp = float(input('Enter temperature in degrees Celsius: '))
