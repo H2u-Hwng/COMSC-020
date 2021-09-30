@@ -1,9 +1,8 @@
 # Huu Hung Nguyen
 # 09/15/2021
-# Nguyen_HuuHung_temperature.py
+# temperature.py
 # The program prompts the user for temperature in celsius or fahrenheit.
 # It then convert them and displays the result.
-
 
 # Prompt the user for temperature in celsius or fahrenheit
 temperature = float(input('What is the temperature? '))
@@ -28,4 +27,3 @@ else:
     deg_c = (temperature - 32) * 5 / 9
     print('{:.3f} degrees fahrenheit is {:.3f} degrees celsius.'.
           format(temperature, deg_c))
-    
