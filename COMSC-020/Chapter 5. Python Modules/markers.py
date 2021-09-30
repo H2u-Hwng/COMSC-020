@@ -1,6 +1,6 @@
 # Huu Hung Nguyen
 # 09/26/2021
-# Nguyen_HuuHung_markers.py
+# markers.py
 # The program assumes the price of 1 marker is 80 cents, 5 markers is $3.50,
 # the tax sale rate is 6.5%, the shipping rate is 5%.
 # It prompts the user for the number of markers.
