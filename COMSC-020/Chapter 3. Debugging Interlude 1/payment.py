@@ -1,10 +1,9 @@
 # Huu Hung Nguyen
 # 09/19/2021
-# Nguyen_HuuHung_payment.py
+# payment.py
 # The program prompts the user for the amount of the loan,
 # the annual percentage rate, and the number of years of the loan.
 # It then calculates the monthly payment and prints the result.
-
 
 # Prompt user for principal
 principal = float(input('Enter amount of loan: $'))
