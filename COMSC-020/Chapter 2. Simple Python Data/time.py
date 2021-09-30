@@ -1,9 +1,8 @@
 # Huu Hung Nguyen
 # 09/16/2021
-# Nguyen_HuuHung_time.py
+# time.py
 # The program promt the user for the current time and the waiting time.
 # It then calculates the time after waiting and prints the result.
-
 
 # Prompt user for current time
 current_time = int(input('Enter the current time in hours 0 - 23: '))
