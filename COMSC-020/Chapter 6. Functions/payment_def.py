@@ -22,7 +22,7 @@ def get_monthly_payment(principal, annual_percent, years):
 def main():
     
     # Prompt user for principal, annual percent, and years
-    principal = int(input('Enter amount of loan: $'))
+    principal = float(input('Enter amount of loan: $'))
     annual_percent = float(input('Enter annual interest rate as a percent: '))
     years = int(input('Enter number of years for the loan: '))
     
