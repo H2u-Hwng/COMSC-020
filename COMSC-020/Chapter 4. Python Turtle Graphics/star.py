@@ -6,13 +6,15 @@
 # Library
 import turtle
 
-# Open window
+# Create window
 wn = turtle.Screen()
 
-# Draw star
+# Create turtle named star
 star = turtle.Turtle()
 star.pensize(4)
 star.hideturtle()
+
+# Draw star
 for n in range(5):
     star.forward(155)
     star.right(144)
