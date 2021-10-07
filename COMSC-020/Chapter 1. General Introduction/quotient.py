@@ -5,13 +5,13 @@
 # The program performs the division and displays the output.
 
 # Prompt the user for the numerator
-numerator = input('Enter a numerator: ')
+numerator = int(input('Enter a numerator: '))
 
 # Prompt the user for the denominator
-denominator = input('Enter a denominator: ')
+denominator = int(input('Enter a denominator: '))
 
 # Perform the division 
-quotient = int(numerator) / int(denominator)
+quotient = numerator / denominator
 
 # Display the quotient
-print('Quotient: ', quotient, '.', sep = '')
+print(f'Quotient = {quotient:,.3f}')
