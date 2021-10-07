@@ -1,16 +1,15 @@
 # Huu Hung Nguyen
 # 09/14/2021
 # prices.py
-# The program assumes the sales tax.
-# It prompts the user for the number of items purchased,
+# Constant for the sales tax.
+# The program prompts the user for the number of items purchased,
 # and the price of each item.
-# It then displays the subtotal of the sale, the amount of sales tax,
-# and the total cost.
+# It then displays the subtotal, the tax cost, and the total cost.
 
-# Assume sales tax is 7 percent
-SALES_TAX_RATE = 0.07
+# Constant for the sales tax
+TAX_RATE = 0.07
 
-# Assign subtotal
+# Assume subtotal
 subtotal = 0
 
 # Prompt user for number of items
@@ -18,14 +17,14 @@ num_items = int(input('How many items are you purchasing? '))
 
 # Prompt user for prices of number items and calculate subtotal
 for n in range(1, num_items + 1):
-    item = float(input('Enter price for item {}: '. format(n)))
-    subtotal += item
+    price = float(input(f'Enter price for item {n}: '))
+    subtotal += price
     
 # Calculate tax and total cost
-tax = subtotal * SALES_TAX_RATE
-total_cost = subtotal + tax
+tax_cost = subtotal * TAX_RATE
+total_cost = subtotal + tax_cost
 
 # Print subtotal, tax, and total cost
-print('''Subtotal: ${:.2f}
-Tax: ${:.2f}
-Total: ${:.2f}'''. format(subtotal, tax, total_cost))
+print(f'''Subtotal: ${subtotal:,.2f}
+Tax: ${tax_cost:,.2f}
+Total: ${total_cost:,.2f}''')
