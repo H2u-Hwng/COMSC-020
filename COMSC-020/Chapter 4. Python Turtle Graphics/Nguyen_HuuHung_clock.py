@@ -6,16 +6,23 @@
 # Library
 import turtle
 
-# Open window
+# Create window
 wn = turtle.Screen()
 wn.bgcolor('lightgreen')
+wn.setup(width = 500, height = 500)
 
-# Draw clock
+# Create turtle named clock
 clock = turtle.Turtle()
 clock.shape('turtle')
 clock.up()
 clock.color('blue')
 clock.pensize(3)
+clock.speed(0)
+
+# Calculate angle
+angle = 360 / 12
+
+# Draw clock
 for i in range(12):
     clock.forward(117)
     clock.down()
@@ -23,8 +30,8 @@ for i in range(12):
     clock.up()
     clock.forward(20)
     clock.stamp()
-    clock.goto(0, 0)
-    clock.right(360 / 12)
+    clock.forward(-147)
+    clock.right(angle)
     
 # Close window
 wn.exitonclick()
