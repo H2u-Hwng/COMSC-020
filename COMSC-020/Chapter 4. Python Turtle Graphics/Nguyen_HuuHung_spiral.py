@@ -1,15 +1,15 @@
 # Huu Hung Nguyen
 # 09/22/2021
 # Nguyen_HuuHung_spiral.py
-# The program assumes the first length is 10.
-# It prompts the user for the number of sides, the interations, 
+# Constant for the length.
+# The program prompts the user for the number of sides, the interations, 
 # and the percentage of increase length.
 # It then draws polygonal spirals.
 
 # Library
 import turtle
 
-# Assume first length is 10
+# Constant for the length
 LENGTH = 10
 
 # Create window
@@ -20,7 +20,7 @@ figure = turtle.Turtle()
 figure.pensize(2)
 figure.speed(0)
 
-# Assign first length side
+# Assume first length side
 length_side = LENGTH
 
 # Prompt user for number of sides and iterations
@@ -42,5 +42,5 @@ for n in range(iterations):
     increase_side = length_side * increase_rate
     length_side += increase_side
 
-# Exit window
+# Close window
 wn.exitonclick()
