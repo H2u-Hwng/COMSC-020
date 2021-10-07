@@ -10,11 +10,12 @@ COST_PAPER = 2.5
 # Prompt user for packages of paper 
 packages_paper = int(input('Enter packages of paper: '))
 
-# Prompt user for tax rate as a percent
-tax_rate = float(input('Enter tax rate: '))
+# Prompt user for tax rate as a percent and calculate tax rate
+tax_percent = float(input('Enter tax rate as a percent: '))
+tax_rate = tax_percent / 100
 
 # Calculate total cost
-total_cost = COST_PAPER * packages_paper * (1 + tax_rate/100)
+total_cost = COST_PAPER * packages_paper * (1 + tax_rate)
 
 # Display total cost with label 
-print('Total cost: $', format(total_cost, '.2f'), '.', sep = '')
+print(f'Total cost: ${total_cost:,.2f}')
