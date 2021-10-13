@@ -1,6 +1,6 @@
 # Huu Hung Nguyen
-# 10/05/2021
-# markers_def.py
+# 10/12/2021
+# markers_method.py
 # Constants for number markers per package, price of marker and package,
 # tax rate, and shipping rate.
 # The program prompts user for number of markers.
@@ -16,12 +16,18 @@ PRICE_PACKAGE = 3.50
 TAX_RATE = 0.065
 SHIPPING_RATE = 0.05
 
-# Define get total cost function
-def get_total_cost(markers):
+# Calculate and return packages, separate markers
+def get_num_markers(markers):
     
     # Calculate number of packages and separate markers
     packages = markers // MARKERS_PER_PACKAGE
     separate_markers = markers % MARKERS_PER_PACKAGE
+    
+    return packages, separate_markers
+
+
+# Calculate and return subtotal, tax cost, shipping cost, and total cost 
+def get_total_cost(packages, separate_markers):
     
     # Calculate subtotal, tax cost, and shipping cost
     subtotal = packages * PRICE_PACKAGE + separate_markers * PRICE_MARKER
@@ -31,8 +37,8 @@ def get_total_cost(markers):
     # Calculate total cost
     total_cost = subtotal + tax_cost + shipping_cost
     
-    return [packages, separate_markers,
-            subtotal, tax_cost, shipping_cost, total_cost]
+    return [subtotal, tax_cost, shipping_cost, total_cost]
+
 
 # Define main function
 def main():
@@ -40,14 +46,14 @@ def main():
     # Prompt user for number of markers
     markers = int(input('How many markers are you buying? '))
     
-    # Get packages and separate markers
-    packages, separate_markers = get_total_cost(markers)[0:2]
+    # Obtain packages and separate markers
+    packages, separate_markers = get_num_markers(markers)
     
-    # Get subtotal, tax cost, and shipping cost
-    subtotal, tax_cost, shipping_cost = get_total_cost(markers)[2:5]
+    # Obtain subtotal, tax cost, and shipping cost
+    subtotal, tax_cost, shipping_cost = get_total_cost(packages, separate_markers)[:3]
     
-    # Get total cost
-    total_cost = get_total_cost(markers)[5]
+    # Obtain total cost
+    total_cost = get_total_cost(packages, separate_markers)[3]
     
     # Print results
     print(f'''Number of packages: {packages}
