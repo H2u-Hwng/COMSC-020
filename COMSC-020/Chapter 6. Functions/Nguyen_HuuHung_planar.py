@@ -1,41 +1,46 @@
 # Huu Hung Nguyen
-# 09/19/2021
-# Nguyen_HuuHung_star.py
-# Draw a star.
+# 10/12/2021
+# Nguyen_HuuHung_planar.py
+# The program contains 2 functions calculating distance and block distance.
+# It prompts user for the x and y coordinates of two points.
+# It then displays distance and block distance.
 
-
-# Define distance function
+# Calculate and return distance
 def distance(x1, y1, x2, y2):
     
     # Calculate distance
-    distance = ((x1 - x2)**2 + (y1 - y2)**2)**(1 / 2)
+    distance = ((x1 - x2)**2 + (y1 - y2)**2)**0.5
     
     return distance
 
-# Define block distance function
+
+# Calculate and return block distance
 def block_distance(x1, y1, x2, y2):
     
     # Calculate block distance
     block_distance = abs(x1 - x2) + abs(y1 - y2)
     
     return block_distance
-
+    
+    
 # Define main function
 def main():
     
-    # Prompt user for x and y coordinates of two points
-    x1 = float(input('Enter the x coordinate of the point number 1: '))
-    y1 = float(input('Enter the y coordinate of the point number 1: '))
-    x2 = float(input('Enter the x coordinate of the point number 2: '))
-    y2 = float(input('Enter the y coordinate of the point number 2: '))
+    # Prompt user for the x and y coordinates of two points
+    x1_coord = float(input('Enter the x coordinate of point 1: '))
+    y1_coord = float(input('Enter the y coordinate of point 1: '))
     
-    # Get pythagorean and city block distance
-    pythagorean = distance(x1, y1, x2, y2)
-    city_block = block_distance(x1, y1, x2, y2)
+    x2_coord = float(input('Enter the x coordinate of point 2: '))
+    y2_coord = float(input('Enter the y coordinate of point 2: '))
     
-    # Display results
-    print(f'''Pythagorean distance = {pythagorean:,.2f}
-City block distance = {city_block:,.2f}''')
+    # Obtain pythagorean distance and city block distance
+    pythagorean_distance = distance(x1_coord, y1_coord, x2_coord, y2_coord)
+    city_block_distance = \
+                    block_distance(x1_coord, y1_coord, x2_coord, y2_coord)
+    
+    # Display pythagorean distance and city block distance
+    print(f'The Pythagorean distance is {pythagorean_distance:,.2f}')
+    print(f'The "city block" distance is {city_block_distance:,.2f}')
     
 # Call main function
 main()
