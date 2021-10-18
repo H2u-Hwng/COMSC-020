@@ -1,64 +1,79 @@
+# Huu Hung Nguyen
+# 10/17/2021
+# Nguyen_HuuHung_great_circle.py
+# Constants for radius of earh in kilometers, 1 kilometer to miles, latitude,
+# and longitude of 3 cities
+# Program contains 2 functions calculating great circle distance,
+# and converting kilometers to miles.
+# It then displays distances in both kilometers and miles.
+
 # Library
 from math import radians, acos, sin, cos
 
-# Constants for radius of earth and km to miles
+# Constants for radius of earh in kilometers and 1 kilometer to miles
 RADIUS = 6371
 KM_TO_MILES = 0.621371
 
-# Constants for latitude and longitude of san jose in degrees
+# Constants for latitudes of San Jose, Chicago, and Washington DC in degrees
 LAT_SJ = 37.33
-LONG_SJ = -121.9
-
-# Constants for latitude and longitude of chicago in degrees
 LAT_CHI = 41.83
-LONG_CHI = -87.68
-
-# Constants for latitude and longitude of washington in degrees
 LAT_WAS = 38.90
+
+# Constants for longitudes of San Jose, Chicago, and Washington DC in degrees
+LONG_SJ = -121.9
+LONG_CHI = -87.68
 LONG_WAS = -77.02
 
-# Define great circle dist function
-def great_circle_dist(lat1, long1, lat2, long2):
+# Take latitude and longitude of 2 cities
+# Convert degrees to radians, calculate central angle and distance
+# Return distance in kilometers between 2 cities
+def great_circle_distance(lat1, long1, lat2, long2):
     
     # Convert degrees to radians
-    lat1 = radians(lat1)
-    long1 = radians(long1)
-    lat2 = radians(lat2)
-    long2 = radians(long2)
+    lat1_rad = radians(lat1)
+    long1_rad = radians(long1)
+    lat2_rad = radians(lat2)
+    long2_rad = radians(long2)
     
     # Calculate central angle
-    angle = \
-acos(sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(abs(long1 - long2)))
+    angle = acos(sin(lat1_rad) * sin(lat2_rad) + \
+            cos(lat1_rad) * cos(lat2_rad) * cos(abs(long1_rad - long2_rad)))
     
-    # Calculate great circle dist
-    distance = RADIUS * angle
+    # Calculate distance in kilometers
+    distance_kms = RADIUS * angle
     
-    return distance
+    return distance_kms
 
-# Define km to miles function
-def km_to_miles(distance):
+
+# Take distance in kilometers
+# Convert kilometers to miles and return distance in miles
+def km_to_miles(distance_kms):
     
-    # Convert kms to miles
-    distance = distance * KM_TO_MILES
+    # Convert kilometers to miles
+    distance_miles = distance_kms * KM_TO_MILES
     
-    return distance
+    return distance_miles
+    
     
 # Define main function
 def main():
     
-    # Get distance from san jose to chicago in kms and miles
-    dist_kms_sj_chi = great_circle_dist(LAT_SJ, LONG_SJ, LAT_CHI, LONG_CHI)
-    dist_miles_sj_chi = km_to_miles(dist_kms_sj_chi)
+    # Obtain distance from San Jose to Chicago in kilometers and miles
+    kms_sj_chi = great_circle_distance(LAT_SJ, LONG_SJ,
+                                            LAT_CHI, LONG_CHI)
+    miles_sj_chi = km_to_miles(kms_sj_chi)
     
-    # Get distance from chicago to washington in kms and miles
-    dist_kms_chi_was = great_circle_dist(LAT_CHI, LONG_CHI, LAT_WAS, LONG_WAS)
-    dist_miles_chi_was = km_to_miles(dist_kms_chi_was)
+    # Obtain distance from Chicago to Washington DC in kilometers and miles
+    kms_chi_was = great_circle_distance(LAT_CHI, LONG_CHI,
+                                             LAT_WAS, LONG_WAS)
+    miles_chi_was = km_to_miles(kms_chi_was)
     
-    # Print results
-    print(f'The distance from San Jose to Chicago is \
-{dist_kms_sj_chi:,.0f} kilometers or {dist_miles_sj_chi:,.0f} miles.')
-    print(f'The distance from Chicago to Washington D.C. is \
-{dist_kms_chi_was:,.0f} kilometers or {dist_miles_chi_was:,.0f} miles.')
+    # Display 2 distances in both kilometers and miles
+    print('The distance from San Jose to Chicago is ', end = '')
+    print(f'{kms_sj_chi :,.0f} kilometers or {miles_sj_chi :,.0f} miles.')
+    
+    print('The distance from Chicago to Washington D.C. is ', end = '') 
+    print(f'{kms_chi_was :,.0f} kilometers or {miles_chi_was :,.0f} miles.')
     
 # Call main function
 main()
