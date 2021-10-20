@@ -1,53 +1,60 @@
+# Huu Hung Nguyen
+# 10/19/2021
+# Nguyen_HuuHung_pricing.py
 # Constants for discounts
-DISCOUNT_1 = 0
-DISCOUNT_2 = 0.1
-DISCOUNT_3 = 0.2
-DISCOUNT_4 = 0.25
-DISCOUNT_5 = 0.3
+# Program prompts user for price of product and quantity ordered.
+# It then calculate and displays total price, amount discount,
+# and total with discount.
 
-# Define software sales function
-def software_sales(price, quantity):
+# Constants for discounts
+DISCOUNT1 = 0.00
+DISCOUNT2 = 0.10
+DISCOUNT3 = 0.20
+DISCOUNT4 = 0.25
+DISCOUNT5 = 0.30
+
+# Take cost and quantity
+# Calculate and return total cost, discount cost, and total with discount
+def software_sales(cost, quantity):
     
-    # Calculate total cost before discount
-    total_cost = price * quantity
+    # Calculate total cost
+    total_cost = cost * quantity
     
-    # Calculate amount of discount 
+    # Check discount and calculate discount cost
     if quantity < 10:
-        discount = DISCOUNT_1
-    elif quantity in range(10, 20):
-        discount = DISCOUNT_2
-    elif quantity in range(20, 50):
-        discount = DISCOUNT_3
-    elif quantity in range(50, 100):
-        discount = DISCOUNT_4
+        discount = DISCOUNT1
+    elif quantity < 20:
+        discount = DISCOUNT2
+    elif quantity < 50:
+        discount = DISCOUNT3
+    elif quantity < 100:
+        discount = DISCOUNT4
     else:
-        discount = DISCOUNT_5
+        discount = DISCOUNT5
     
-    amount_discount = total_cost * discount
+    discount_cost = total_cost * discount
     
-    # Calculate total cost after discount
-    total_w_discount = total_cost - amount_discount
-    
-    return [total_cost, amount_discount, total_w_discount]
+    # Calculate total with discount
+    total_with_discount = total_cost - discount_cost
+
+    return total_cost, discount_cost, total_with_discount
+
 
 # Define main function
 def main():
     
     # Prompt user for price of product and quantity ordered
-    price = float(input('Enter the price of the product: $'))
-    quantity = int(input('Enter the quantity ordered: '))
+    price_product = float(input('Enter price of product: $'))
+    quantity_ordered = int(input('Enter quantity: '))
     
-    # Get total cost before discount and amount of discount 
-    total_cost = software_sales(price, quantity)[0]
-    amount_discount = software_sales(price, quantity)[1]
-    
-    # Get total cost after discount
-    total_w_discount = software_sales(price, quantity)[2]
-
+    # Obtain total price, amount discount, and total with discount
+    total_price, amount_discount, total_with_discount = \
+                 software_sales(price_product, quantity_ordered)
+     
     # Display results
-    print(f'''The price before discount is ${total_cost:,.2f}
-The amount of discount is ${amount_discount:,.2f}
-The total cost of purchase after the discount is ${total_w_discount:,.2f}''')
+    print(f'Total price before discount: ${total_price:,.2f}')
+    print(f'Amount of discount: ${amount_discount:,.2f}')   
+    print(f'Total price after discount: ${total_with_discount:,.2f}')    
     
 # Call main function
 main()
