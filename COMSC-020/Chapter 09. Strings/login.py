@@ -24,15 +24,15 @@ def get_login_name(first_name, last_name, id_number):
 def main():
     
     # Prompt user for first name, last name, and digit ID
-    first_name = input('Please enter your first name: ')
-    last_name = input('Please enter your last name: ')
-    digit_id = input('Please enter a 7 digit id: ')
+    first_name = input("Please enter your first name: ")
+    last_name = input("Please enter your last name: ")
+    digit_id = input("Please enter a 7 digit id: ")
     
     # Obtain login name
     login_name = get_login_name(first_name, last_name, digit_id)
     
     # Display login name
-    print(f'Your login is {login_name}.')
+    print(f"Your login is {login_name}.")
     
 # Call main function
 main()
