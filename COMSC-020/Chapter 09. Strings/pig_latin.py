@@ -1,5 +1,5 @@
 # Huu Hung Nguyen
-# 11/08/2021
+# 11/10/2021
 # Nguyen_HuuHung_pig_latin.py
 # Program prompts user for a sentence.
 # Program contains function converting sentence to pig latin.
@@ -50,12 +50,14 @@ def main():
     # Convert sentence to pig latin until users enter a new line
     while again:
         
-        # Prompt user for a sentence
+        # Get a sentence from the user
         sentence = input('Please enter a sentence: ')
+        
+        # Split the sentence into a list of words
         words_list = sentence.split()
         
         # Create result
-        result = ''
+        pig_sentence = ''
         
         # Check if users enter a new line
         if sentence == '':
@@ -63,12 +65,12 @@ def main():
         else:
             for word in words_list:
                 # Convert word to pig latin
-                new_word = to_pig_latin(word)
+                pig_word = to_pig_latin(word)
                 # Obtain result
-                result += new_word + ' '
+                pig_sentence += pig_word + ' '
             
             # Display result
-            print(result)
+            print(pig_sentence)
         
 # Call main function
 main()
