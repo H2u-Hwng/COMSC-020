@@ -14,7 +14,7 @@ def main():
     
     # Determine and display the reverse of the sentence
     reverse_sentence = get_reverse(sentence)
-    print(f'Its reverse is {reverse_sentence}.')
+    print(f'Its reverse is "{reverse_sentence}".')
 
 # Call main function
 main()
