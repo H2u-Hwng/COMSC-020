@@ -1,6 +1,6 @@
 # COMSC-020
 
-## Book
+# Book
 
 ### How to Think Like a Computer Scientist: Interactive Edition
 https://runestone.academy/runestone/books/published/thinkcspy/index.html
@@ -8,5 +8,5 @@ https://runestone.academy/runestone/books/published/thinkcspy/index.html
 ### Foundations of Python Programming
 https://runestone.academy/runestone/books/published/fopp/index.html
 
-## Lectures
-https://www.youtube.com/watch?v=Ggcb-Ktc_Kw&list=PLXdBv1raHKNttrsGo6uaDwVmxgBUN1Jd_
+# Lectures
+https://www.youtube.com/playlist?list=PLXdBv1raHKNttrsGo6uaDwVmxgBUN1Jd_
