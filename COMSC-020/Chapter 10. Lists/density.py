@@ -1,5 +1,5 @@
 # Huu Hung Nguyen
-# 11/15/2021
+# 11/19/2021
 # Nguyen_HuuHung_density.py
 # The program reads file named "density.txt".
 # It then determine and displays minimum density, maximum density,
@@ -53,12 +53,32 @@ def get_mean(data_list):
     return mean
 
 
-def sorter(data_list):
-    '''Create and return a key for the data list.'''
+def get_maximum(data_list, names):
+    '''Take the data list and the names list
+       Return the maximum data and corresponding name.'''
     
-    key = data_list[1]
+    # Determine the maximum data
+    max_data = max(data_list)
     
-    return key
+    # Determine corresponding name with the maximum data
+    max_index = data_list.index(max_data)
+    max_name = names[max_index]
+    
+    return max_data, max_name
+
+
+def get_minimum(data_list, names):
+    '''Take the data list and the names list
+       Return the minimum data and corresponding name.'''
+    
+    # Determine the minimum data
+    min_data = min(data_list)
+    
+    # Determine corresponding name with the minimum data
+    min_index = data_list.index(min_data)
+    min_name = names[min_index]
+    
+    return min_data, min_name
 
 
 def main():
@@ -67,33 +87,27 @@ def main():
     # Open file and automatically close it when being done
     with open(INPUT_FILE, 'r') as input_file:
     
-        # Initialize the lists for planets densities, planets, and densities
-        planets_densities = []
+        # Initialize the planets list and the densities list
         planets = []
         densities = []
         
-        # Creat a list of planets densities
+        # Create the planets list and the densities list
         for line in input_file:
             # Strip whitespace off the end and split planet and density
             planet_density = line.strip().split()
             
-            # Add planet and density to the end of the planets densities list
-            planets_densities.append(planet_density)
-        
-        # Determine sorted planets densities list
-        sorted_planets_densities = sorted(planets_densities, key = sorter)
-        
-        # Create lists of planets and densities
-        for element in sorted_planets_densities:
             # Add the planet to the end of the planets list
-            planets.append(element[0])
+            planets.append(planet_density[0])
             
             # Add the density to the end of the densities list
-            densities.append(float(element[1]))
+            densities.append(float(planet_density[1]))
         
-        # Determine and display the minumum and maximum densities
-        print(f'{planets[0]} has the minimum density of {densities[0]}.')
-        print(f'{planets[-1]} has the maxiimum density of {densities[-1]}.')
+        # Determine and display the minimum and maximum densities
+        min_density, min_planet = get_minimum(densities, planets)
+        print(f'{min_planet} has the minimum density of {min_density} kg/m3.')
+        
+        max_density, max_planet = get_maximum(densities, planets)
+        print(f'{max_planet} has the maximum density of {max_density} kg/m3.')
         
         # Determine and display the mean density
         mean_density = get_mean(densities)
