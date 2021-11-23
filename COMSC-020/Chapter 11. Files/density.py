@@ -11,10 +11,7 @@ INPUT_FILE = 'density.txt'
 def is_even(n):
     '''Return True if the paramerter n is even and False otherwise.'''
     
-    if n % 2 == 0:
-        even = True
-    else:
-        even = False
+    even = n % 2 == 0
     
     return even
 
