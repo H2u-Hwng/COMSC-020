@@ -1,97 +1,73 @@
 # Huu Hung Nguyen
-# 11/09/2021
+# 11/19/2021
 # Nguyen_HuuHung_license.py
-# The program reads file named "correct_answers.txt".
-# It compares between student's answers and correct answers in file.
+# The program reads file named "student_answers.txt".
+# It compares between student's answers and correct answers.
+# It displays that student passed or failed.
 # It then determines and displays the number of answering correctly,
 # the number of answering incorrectly, and incorrectly answered questions.
-# It also display that student pass or fail.
 
-# Compare license answer and student answer
-# Replace student incorrectly answer by "X"
-# Return number correct answers, incorrect answers list,
-# and post student answers list
-def compare_answers(student_ans, license_ans, questions):
-    num_correct_ans = 0
-    incorrect_qns = []
-    post_student_ans = []
+# Constants for correct answers, passing and input file
+CORRECT_ANSWERS = ['A', 'C', 'A', 'A', 'D', 'B', 'C', 'A', 'C', 'B',
+                   'A', 'D', 'C', 'A', 'D', 'C', 'B', 'B', 'D', 'A'] 
+PASS = 15
+INPUT_FILE = 'student_answers.txt'
+
+def grade_student(answers):
+    '''Take a student's answers and grade them based on correct answers
+       Return the incorrect questions.'''
     
-    for n in range(len(license_ans)):
-        # Check if student answer is correct or no
-        if student_ans[n] == license_ans[n]:
-            # Add one to the number correct asnwers
-            num_correct_ans += 1
-            # Add license answer to the end of the post student answers list
-            post_student_ans.append(license_ans[n])
-        else:
-            # Add the incorrectly aswered question
-            # to the end of the incorrect questions list
-            incorrect_qns.append(questions[n])
-            # Add "X" to the end of the post student answers list
-            post_student_ans.append('X')
+    # Initialize the incorrect questions list
+    incorrect_questions = []
     
-    return num_correct_ans, incorrect_qns, post_student_ans
+    for n in range(len(CORRECT_ANSWERS)):
+        # Check whether the answer is incorrect
+        if answers[n] != CORRECT_ANSWERS[n]:
+            # Add question to the end of the incorrect questions list
+            incorrect_questions.append(str(n + 1))
+
+    return incorrect_questions
     
     
-# Define main function
 def main():
+    '''Define main function.'''
     
-    # Open "license_answers.txt" and automatically close it when being done
-    with open('license_answers.txt', 'r') as license_office:
-        license_qns = []
-        license_ans = []
+    # Open file and automatically close it when being done
+    with open(INPUT_FILE, 'r') as input_file:
         
-        for line in license_office:
-            # Strip blanked space at both side and split question and answer
-            question_answer = line.strip().split('.')
-            
-            # Add the question to the end of the license questions list
-            license_qns.append(question_answer[0].strip())
-            
-            # Add the correct answer to the end of the license answers list
-            license_ans.append(question_answer[1].strip())
-            
-    # Open "student_answers.txt" and automatically close it when being done
-    with open('student_answers.txt', 'r+') as student:
-        student_ans = []
+        # Initialize student answers list
+        student_answers = []
         
-        for line in student:
-            # Strip blanked space at both side and split question and answer
-            question_answer = line.strip().split('.')
-            
-            # Add the student answer to the end of the student answers list
-            student_ans.append(question_answer[1].strip())
+        # Create a list of student answers
+        for line in input_file:
+            # Strip the whitespace off the end
+            # Add the answers to the end of the student answers list
+            student_answers.append(line.strip())
         
-        # Get number correct answer, incorrectly answered questions, 
-        # and post student answers
-        num_correct_ans, incorrect_qns, post_student_ans = \
-                        compare_answers(student_ans, license_ans, license_qns)
+        # Determine the incorrect questions
+        incorrect_questions = grade_student(student_answers)
         
-    
-        # Clear the contents of the file
-        student.truncate(0)
-        # Move to the beginning of the file
-        student.seek(0)
-    
-        for n in range(1, len(license_ans) + 1):
-            student.write(f'{n}. {post_student_ans[n - 1]} \n')
-
-    # Display results
-    print(f'You answered correctly {num_correct_ans} questions.')
-    print(f'You answered incorrectly {len(incorrect_qns)} questions.')
-    
-    # Check if all answers are correct
-    if len(incorrect_qns) == 0:
-        print('There are no incorrectly answered questions.')
-    else:
-        incorrect_qns_format = ', '.join(incorrect_qns)
-        print(f'Incorrectly answered questions are {incorrect_qns_format}.')
-            
-    # Check if students pass or no
-    if num_correct_ans >= 15:
-        print('You pass the exam!')
-    else:
-        print('You fail the exam!')
-
+        # Determine the number of questions, incorrect and correct answers
+        num_questions = len(CORRECT_ANSWERS)
+        num_incorrect = len(incorrect_questions)
+        num_correct = num_questions - num_incorrect
+        
+        # Check if the student passed or failed
+        if num_correct >= PASS:
+            print('congratulations! You passed the exam.')
+        else:
+            print('Sorry, you failed the exam.')
+        
+        # Display the numbers of correct and incorrect answers
+        print(f'You answered correctly {num_correct} questions.')
+        print(f'You answered incorrectly {num_incorrect} questions.')
+        
+        # Display the wrong questions
+        if num_incorrect == 0:
+            print('There are no incorrectly answered questions.')
+        else:
+            incorrect_questions = ', '.join(incorrect_questions)
+            print(f'Incorrectly questions: {incorrect_questions}.')
+                          
 # Call main function
 main()
