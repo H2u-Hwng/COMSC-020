@@ -1,5 +1,5 @@
 # Huu Hung Nguyen
-# 11/23/2021
+# 11/24/2021
 # Nguyen_HuuHung_dna.py
 # Constant for the dictionary of nucleotides and aminos.
 # The program prompts the user for a string of ACGT triples.
@@ -71,16 +71,12 @@ def main():
             
             # Check whether the user inputs the complete triples
             if is_complete_triple(clean_nucleotides):
-                # Initialize position
-                position = 0
-                
-                for num in range(0, len(clean_nucleotides), 3):
+                for position in range(0, len(clean_nucleotides), 3):
                     # Determine the triple in the clean nucleotides
-                    triple = clean_nucleotides[num : num + 3]
+                    triple = clean_nucleotides[position : position + 3]
                     
                     # Determine the amino acid in the dictionary
-                    amino_acid = \
-                            NUCLEOTIDES_AMINOS.get(triple, 'invalid sequence')
+                    amino_acid = NUCLEOTIDES_AMINOS.get(triple, 'invalid sequence')
                     
                     # Display the triple and corresponding amino acid
                     print(triple, amino_acid)
