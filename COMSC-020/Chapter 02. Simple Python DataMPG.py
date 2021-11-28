@@ -14,4 +14,4 @@ gallons = float(input('How many gallons used? '))
 mpg = miles / gallons
 
 # Print result
-print('The car can travel {:.3f} miles per gallon.'. format(mpg))
+print('The car can travel {:.3f} miles per gallon.'.format(mpg))
