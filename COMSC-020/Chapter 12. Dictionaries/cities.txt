@@ -1,0 +1,75 @@
+Alexandria,Egypt,3811516
+Ankara,Turkey,3517182
+Bangkok,Thailand,5104476
+Barcelona,Spain,1621537
+Barranquilla,Colombia,1380425
+Beirut,Lebanon,1916100
+Belgrade,Serbia,1273651
+Berlin,Germany,3426354
+Bogota,Colombia,7674366
+Brussels,Belgium,1019022
+Budapest,Hungary,1741041
+Buenos Aires,Argentina,13076300
+Busan,South Korea,3678555
+Cairo,Egypt,7734614
+Calgary,Canada,1019942
+Cali,Colombia,2392877
+Cape Town,South Africa,3433441
+Caracas,Venezuela,3000000
+Casablanca,Morocco,3144909
+Chicago,USA,2695598
+Ciudad Juarez,Mexico,1512354
+Copenhagen,Denmark,1153615
+Dakar,Senegal,2476400
+Dallas,USA,1197816
+Dubai,United Arab Emirates,1137347
+Dublin,Ireland,1024027
+Durban,South Africa,3120282
+Guadalajara,Mexico,1640589
+Hamburg,Germany,1739117
+Hong Kong,Hong Kong,7012738
+Houston,USA,2099451
+Istanbul,Turkey,11174257
+Jakarta,Indonesia,8540121
+Johannesburg,South Africa,2026469
+Kaohsiung,Taiwan,1519711
+Kiev,Ukraine,2797553
+Kuala Lumpur,Malaysia,1453975
+Kyoto,Japan,1459640
+Leon,Mexico,1114626
+Lima,Peru,7737002
+London,United Kingdom,7556900
+Los Angeles,USA,3792621
+Madrid,Spain,3255944
+Manhattan,USA,1487536
+Manila,Philippines,10444527
+Maracaibo,Venezuela,2225000
+Medellin,Colombia,1999979
+Mexico City,Mexico,12294193
+Milano,Italy,1306661
+Montevideo,Uruguay,1270737
+Montreal,Canada,3268513
+Munich,Germany,1260391
+Nairobi,Kenya,2750547
+New York,USA,8175133
+Paris,France,2138551
+Philadelphia,USA,1526006
+Phoenix,USA,1445632
+Prague,Czech Republic,1165581
+Pretoria,South Africa,1619438
+Rabat,Morocco,1655753
+Rome,Italy,2563241
+San Antonio,USA,1327407
+San Diego,USA,1307402
+Santiago,Chile,4837295
+Sapporo,Japan,1883027
+Seoul,South Korea,10349312
+Stockholm,Sweden,1253309
+Surabaya,Indonesia,2374658
+Taipei,Taiwan,7871900
+Tijuana,Mexico,1376457
+Tokyo,Japan,8336599
+Toronto,Canada,4612191
+Vancouver,Canada,1837969
+Vienna,Austria,1691468
+Warsaw,Poland,1702139
