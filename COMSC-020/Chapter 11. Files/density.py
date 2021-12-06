@@ -27,8 +27,7 @@ def get_median(data_list):
     
     # Determine the median
     if is_even(n):
-        median = (sorted_data_list[(n // 2)] + \
-                  sorted_data_list[(n // 2) - 1]) / 2.0
+        median = (sorted_data_list[(n // 2)] + sorted_data_list[(n // 2) - 1]) / 2.0
     else:
         median = sorted_data_list[(n - 1) // 2] 
     
@@ -41,11 +40,12 @@ def get_mean(data_list):
     # Determine how many numbers in the list
     n = len(data_list)
     
-    # Add up the numbers in the list
-    sum_data = sum(data_list)
-    
-    # Calculate the mean
-    mean = sum_data / n
+    # Check whether the data list is empty
+    if n == 0:
+        mean = 0
+    else:
+        # Calculate the mean
+        mean =  sum(data_list) / n
     
     return mean
 
