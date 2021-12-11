@@ -14,5 +14,4 @@ radius = float(input('Enter the radius: '))
 area = math.pi * radius**2
 
 # Print the result
-print('The area of the circle having radius {:.3f} is {:.3f}.'
-      .format(radius, area))
+print('The area of the circle having radius {:.3f} is {:.3f}.'.format(radius, area))
