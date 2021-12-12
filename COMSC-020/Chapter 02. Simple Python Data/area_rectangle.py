@@ -12,4 +12,4 @@ height = float(input('Enter the height of the rectangle: '))
 area_rectangle = width * height
 
 # Print result
-print('The are of the rectangle is {:.3f}.'. format(area_rectangle))
+print('The are of the rectangle is {:,.3f}.'.format(area_rectangle))
