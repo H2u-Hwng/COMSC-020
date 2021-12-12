@@ -14,5 +14,4 @@ waiting_time = int(input('Enter the waiting time: '))
 time_after_waiting = (current_time + waiting_time) % 24
 
 # Print result
-print('The time will be on the clock when the alarm goes off is {}.'.
-      format(time_after_waiting))
+print('The time will be on the clock when the alarm goes off is {}.'.format(time_after_waiting))
