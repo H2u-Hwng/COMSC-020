@@ -7,8 +7,7 @@
 # and prints the result.
 
 # Prompt user for starting day
-starting_day = int(input('Enter the starting day \
-in 0 (a Sunday) - 6 (a Saturday): '))
+starting_day = int(input('Enter the starting day in 0 (a Sunday) - 6 (a Saturday): '))
 
 # Prompt user for length of staying day
 staying_day = int(input('Enter the length of staying day: '))
@@ -17,5 +16,4 @@ staying_day = int(input('Enter the length of staying day: '))
 returning_day = (starting_day + staying_day) % 7
 
 # Print result
-print('The number of day of the week I will return on is {}.'.
-      format(returning_day))
+print('The number of day of the week I will return on is {}.'.format(returning_day))
