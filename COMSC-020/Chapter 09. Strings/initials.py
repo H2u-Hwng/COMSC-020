@@ -1,3 +1,7 @@
+# Write a short program that has the user input a single string containing a person’s first, middle, and last names, 
+# and then displays their first, middle, and last initials. 
+# For example, if the user enters John William Smith, then the program should display JWS. 
+
 def get_initial(string):
     ''' Take a string and return its upper initial. '''
     
