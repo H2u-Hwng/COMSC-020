@@ -6,14 +6,12 @@
 
 # Prompt the user for temperature in celsius or fahrenheit
 temperature = float(input('What is the temperature? '))
-unit = input('What is the unit of the temperature? \
-Celsius or Fahrenheit? ')
+unit = input('What is the unit of the temperature? Celsius or Fahrenheit? ')
 
 # Convert them and print the result
 if unit in ['Celsius', 'celsius', '°C', 'C', 'c']:
     deg_f = temperature * 9 / 5 + 32
-    print('{:.3f} degrees celsius is {:.3f} degrees cahrenheit.'.
-          format(temperature, deg_f))
+    print(f'{temperature:.3f} degrees celsius is {deg_f:.3f} degrees cahrenheit.')
     
     # Print msg
     if deg_f < 50:
@@ -25,5 +23,4 @@ if unit in ['Celsius', 'celsius', '°C', 'C', 'c']:
 
 else:
     deg_c = (temperature - 32) * 5 / 9
-    print('{:.3f} degrees fahrenheit is {:.3f} degrees celsius.'.
-          format(temperature, deg_c))
+    print(f'{temperature:.3f} degrees fahrenheit is {deg_c:.3f} degrees celsius.')
