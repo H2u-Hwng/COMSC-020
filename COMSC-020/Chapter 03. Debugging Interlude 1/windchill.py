@@ -12,9 +12,7 @@ temp = float(input('Enter temperature in degrees Celsius: '))
 wind_velocity = float(input('Enter wind velocity in kilometers/hour: '))
 
 # Calculate wind chill temperature
-wind_chill_temp = 13.12 + (0.6215 * temp) - (11.37 * wind_velocity**0.16) \
-                  + (0.3965 * temp * wind_velocity**0.16)
+wind_chill_temp = 13.12 + (0.6215 * temp) - (11.37 * wind_velocity**0.16) + (0.3965 * temp * wind_velocity**0.16)
 
 # Print result
-print('The wind chill temperature in degrees Celsius is {:.3f}.'.
-      format(wind_chill_temp))
+print(f'The wind chill temperature in degrees Celsius is {wind_chill_temp:.3f}.')
