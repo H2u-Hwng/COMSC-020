@@ -13,7 +13,7 @@ annual_percent = float(input('Enter annual interest rate as a percent: '))
 annual_rate = annual_percent / 100
 
 # Prompt user for number of years for the loan
-years = int(input('Enter number of years for the loan: '))
+years = float(input('Enter number of years for the loan: '))
 
 # Calculate monthly interest rate, months of the loan, and subformula
 monthly_rate = annual_rate / 12
