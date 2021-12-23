@@ -44,6 +44,7 @@ def roll_dice(n_rolls):
     # Initialize a 6 by 6 two-dimensional list
     rolls = [[0 for column in range(6)] for row in range(6)]
     
+    #
     for n in range(n_rolls):
         rand1 = random.randint(0,5)
         rand2 = random.randint(0,5)
@@ -61,9 +62,11 @@ def print_rolls(rolls):
     print('      1   2   3   4   5   6')
     print('    ------------------------')
     
+    #
     for i in range(6):
         print(f'{i + 1}|', end = '   ')
         
+        #
         for roll in rolls[i]:
             print(f'{roll:2d}', end = '  ')
             
@@ -116,6 +119,7 @@ def main():
     
     print('Frequencies of totals')
     
+    #
     for i in range(11):
         print(f'{i + 2:2d}:  {totals[i]:3d}')
 
