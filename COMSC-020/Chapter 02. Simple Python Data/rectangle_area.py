@@ -1,3 +1,5 @@
+Write a program that will compute the area of a rectangle. Prompt the user to enter the width and height of the rectangle. Print a nice message with the answer.
+'''
 # Huu Hung Nguyen
 # 09/21/2021
 # area_rectangle.py
@@ -13,3 +15,4 @@ area_rectangle = width * height
 
 # Print result
 print('The are of the rectangle is {:,.3f}.'.format(area_rectangle))
+'''
