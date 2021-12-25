@@ -1,6 +1,6 @@
 # prompt the user for the name, age, city, college, profession, animal, and its name
 name = input("Enter a name: ")
-age = int(input("Enter a age: "))
+age = int(input("Enter a age (as an integer): "))
 city = input("Enter a city: ")
 college = input("Enter a college: ")
 profession = input("Enter a profession: ")
