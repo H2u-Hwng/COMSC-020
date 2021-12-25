@@ -1,3 +1,9 @@
+# 
+# Problem: https://docs.google.com/document/d/16P8dQrgQlYLcWbDT-CkXmHZ2NSdl44NamDufKDDmK8w/edit?usp=sharing
+# 
+
+
+
 SPECIAL = 'ochsshxz' # constant
 
 def make_3sg_form(verb):
