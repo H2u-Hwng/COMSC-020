@@ -1,8 +1,4 @@
-#
 # Problem: https://docs.google.com/document/d/1NSl2yiTzoQ8d0y_D2BlQUB4Q7uPqxVE1p-bQyQDXmZk/edit?usp=sharing
-#
-
-
 
 import random # library
 
