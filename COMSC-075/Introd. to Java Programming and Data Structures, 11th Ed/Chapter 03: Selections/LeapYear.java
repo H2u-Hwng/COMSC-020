@@ -7,14 +7,14 @@ public class LeapYear {
 		return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 	}
 	
-	public static void main(String args[]) {
-	    Scanner input = new Scanner(System.in); // Create a Scanner
+	public static void main(String[] args) {
+	    	Scanner input = new Scanner(System.in); // Create a Scanner
 	    
-	    // Prompt the user for a year
-	    System.out.print("Enter a year: ");
-	    int year = input.nextInt();
+	    	// Prompt the user for a year
+	    	System.out.print("Enter a year: ");
+	    	int year = input.nextInt();
 
-	    // Display the result in a message dialog box
-	    System.out.println(year + " is a leap year? " + isLeapYear(year));   
+	    	// Display the result in a message dialog box
+	    	System.out.println(year + " is a leap year? " + isLeapYear(year));   
 	} 
 }
