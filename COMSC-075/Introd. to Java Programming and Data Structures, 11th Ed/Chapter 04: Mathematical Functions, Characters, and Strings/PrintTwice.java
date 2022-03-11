@@ -10,6 +10,9 @@ public class PrintTwice {
 
         String message = "Never say never.";
         printTwice(message);
+           
+        printTwice(" ");
+        printTwice("HIPHOP NEVER DIE");
     }
 
 }
