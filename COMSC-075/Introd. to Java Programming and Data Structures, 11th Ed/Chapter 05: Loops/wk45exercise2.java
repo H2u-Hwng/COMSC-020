@@ -3,9 +3,7 @@ import java.util.Arrays;
 
 public class wk45exercise2 {
 	
-	public static void displaySortedNumbers(double num1, double num2, 
-											double num3) 
-	{
+	public static void displaySortedNumbers(double num1, double num2, double num3) {
 		double[] myList = {num1, num2, num3};
 		Arrays.sort(myList);
 		
@@ -25,5 +23,4 @@ public class wk45exercise2 {
 		
 		displaySortedNumbers(number1, number2, number3);
 	}
-
 }
