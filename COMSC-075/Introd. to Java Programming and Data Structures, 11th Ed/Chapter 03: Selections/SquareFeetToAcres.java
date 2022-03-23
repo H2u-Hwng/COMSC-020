@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Test {
+public class SquareFeetToAcres {
 
     public static void main(String[] args) {
         final double ACRE_PER_SQUARE_FEET = 43560;
