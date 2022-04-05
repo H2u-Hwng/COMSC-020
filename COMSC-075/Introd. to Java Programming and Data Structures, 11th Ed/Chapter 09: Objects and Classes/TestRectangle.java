@@ -7,8 +7,7 @@ public class TestRectangle {
 		
 		double area1 = r1.getArea();
 		double perimeter1 = r1.getPerimeter();
-		System.out.printf("area: %f perimeter: %f\n", area1, perimeter1);
-		
-		System.out.printf("area: %f perimeter: %f\n", r2.getArea(), r2.getPerimeter());
+		System.out.printf("area: %,.3f perimeter: %,.3f\n", area1, perimeter1);
+		r2.show();
 	}
 }
