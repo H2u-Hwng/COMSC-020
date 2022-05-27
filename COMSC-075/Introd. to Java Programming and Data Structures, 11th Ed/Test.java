@@ -1,105 +1,88 @@
-import java.util.Scanner;
-class StackOfIntegers {
-	private int[] elements;
-	private int size;
-	public static final int DEFAULT_CAPACITY = 16;
+import java.util.*;
 
-	/** Construct a stack with the default capacity 16 */
-	public StackOfIntegers() {
-		this (DEFAULT_CAPACITY);
-	}
-
-	/** Construct a stack with the specified maximum capacity */
-	public StackOfIntegers(int capacity) {
-		elements = new int[capacity];
-	}
-
-	/** Push a new integer to the top of the stack */
-	public void push(int value) {
-		if (size >= elements.length) {
-			int[] temp = new int[elements.length * 2];
-			System.arraycopy(elements, 0, temp, 0, elements.length);
-			elements = temp;
-		}
-
-		elements[size++] = value;
-	}
-
-	/** Return and remove the top element from the stack */
-	public int pop() {
-		return elements[--size];
-	}
-
-	/** Return the top element from the stack */
-	public int peek() {
-		return elements[size - 1];
-	}
-
-	/** Test whether the stack is empty */
-	public boolean empty() {
-		return size == 0;
-	}
-
-	/** Return the number of elements in the stack */
-	public int getSize() {
-		return size;
-	}
-}
 public class Test {
-	/** Main method */
+	
+	
 	public static void main(String[] args) {
-		// Create a Scanner
+		HashMap<String, Double> dictionary = new HashMap<String, Double>();
+		dictionary.put("mowing", 100.0);
+		dictionary.put("tree removal", 1000.0);
+		dictionary.put("planting", 300.0);
+		
 		Scanner input = new Scanner(System.in);
-
-		// Prompt the user to enter a positive integer
-		System.out.print("Enter a positive integer: ");
+	
+		System.out.println("Services: mowing, tree removal, and planting.");
+		
+		System.out.print("How many services you want to choose? ");
+		
+		while (!input.hasNextInt()) {
+			System.err.print("ERROR! " + input.nextLine() + " is not a number.");
+			System.out.println();
+			
+			System.out.print("\nEnter an integer number: ");
+		}
+		
 		int number = input.nextInt();
-
-		// Displays all the number's smallest factors in decreasing order
-		System.out.print("The smallest factors of " + number + " are: ");
-		StackOfIntegers stack = new StackOfIntegers(); // Create a StackOfIntegers
-
-		smallestFactors(number, stack);
-
-		while (!stack.empty()) {
-			System.out.print(stack.pop() + " ");
+		
+		String[] servicesList = new String[number];
+		
+		double money;
+		double totalCost = 0.0;
+		String service = "";
+		for (int i = 0; i < number; i++ ) {
+			String work = input.nextLine().toLowerCase();
+			System.out.printf("%d. Type the service you want: %s", i + 1);
+			//String work = input.nextLine().toLowerCase();//.replaceAll("\\s", "");
 		}
-		System.out.println();
-	}
+		// Get the iterator over the HashMap
+        Iterator<Map.Entry<String, Double>> iterator = dictionary.entrySet().iterator();
+		
+		for (int i = 0; i < number; i ++) {
+			boolean isKeyPresent = false;
+			
+			
+			while (! isKeyPresent) {
+				System.out.printf("%d. Type the service you want: ", i + 1);
+				service = input.nextLine().toLowerCase();//.replaceAll("\\s", "");
+				
+				isKeyPresent = dictionary.containsKey(service);
+			} 
+			
+			money = dictionary.get(service);
+			servicesList[i] = service;
+			totalCost += money;
+			System.out.printf("Its base charge is $%,.2f. \n", money);
+		} 
+		
+		System.out.println("Services you chose are " + Arrays.toString(servicesList));
+		System.out.println("Total cost: $" + totalCost);
+			
+			 
+			
+			
+	            
+//				System.out.printf("%d. Type the service you want: ", i + 1);
+//				String service = input.nextLine().toLowerCase();//.replaceAll("\\s", "");
+//				if (dictionary.get(service) != null) {
+//					double money = dictionary.get(service);
+//					System.out.printf("Its base charge is $%,.2f. \n", money);
 
-	/** Find smallestFactors and push them to StackOfIntegers */
-	public static void smallestFactors(int number, StackOfIntegers stack) {
-		int i = 2; // Potential prime factor
-		while (number / i != 1){ 
-			if (number % i == 0) {
-				stack.push(i);
-				number /= i;
-			}
-			else
-				i++;
-		}
-		stack.push(number);
+//					isValid = true;
+//					
+//				} else { 
+//					System.err.println("ERROR! Please enter the valid service. \n");
+//				}
+//				
+//			
+//			
+//		
+//		
+
+//			
+////			switch(service) {
+
+//		
+//		System.out.println(totalCost);
 	}
 }
 
-
-
-
-
-
-
-
-
-
-//try {
-//	
-//}
-//catch (InputMismatchException ex) {
-//	System.err.println("Please use digits only.");
-//}
-//catch (ArithmeticException ex) {
-//	System.err.println("Division by zero is not allowed.");
-//}
-//catch (Exception ex) {
-//	System.err.println("Error in program.");
-//} 
