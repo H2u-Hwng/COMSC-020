@@ -39,11 +39,9 @@ public class Fan {
     
     public String toString() {
         if (isOn()) {
-            return String.format("A %.1f inch %s fan at a speed of %d.",
-            radius, color, speed);
+            return String.format("A %.1f inch %s fan at a speed of %d.", radius, color, speed);
         } else {
-            return String.format("A %.1f inch %s fan, fan is off.",
-            radius, color);
+            return String.format("A %.1f inch %s fan, fan is off.", radius, color);
         }
     }
 }
