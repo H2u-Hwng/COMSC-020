@@ -1,4 +1,4 @@
-class Fan {
+public class Fan {
     
     final int SLOW = 1;
     final int MEDIUM = 2;
@@ -6,7 +6,7 @@ class Fan {
     
     private int speed = SLOW;
     private boolean on = false;
-    private double radius = 5;
+    private double radius = 5.0;
     
     String color = "blue";
     
@@ -18,7 +18,7 @@ class Fan {
     }
     
     public Fan() {
-        this(SLOW, false, 5, "blue")
+        this(1, false, 5.0, "blue");
     }
     
     public int getSpeed() {
@@ -37,9 +37,13 @@ class Fan {
         return color;
     }
     
-    public void toString() {
-        if (isOn) {
-            System.out.print
+    public String toString() {
+        if (isOn()) {
+            return String.format("A %.1f inch %s fan at a speed of %d.",
+            radius, color, speed);
+        } else {
+            return String.format("A %.1f inch %s fan, fan is off.",
+            radius, color);
         }
     }
 }
