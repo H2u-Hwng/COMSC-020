@@ -1,6 +1,6 @@
 /*
  * Huu Hung Nguyen
- * 08/31/2022
+ * 09/02/2022
  * Assignment 1
  * Design a new Triangle class extends abstract GeometricObject class.
  * Write a test program prompts the user for three sides of the triangle,
@@ -156,6 +156,9 @@ abstract class GeometricObject {
 class Triangle extends GeometricObject {
     private double side1, side2, side3;
   
+    public Triangle() {
+    }
+    
     public Triangle(double side1, double side2, double side3) {
         this.side1 = side1;
         this.side2 = side2;
