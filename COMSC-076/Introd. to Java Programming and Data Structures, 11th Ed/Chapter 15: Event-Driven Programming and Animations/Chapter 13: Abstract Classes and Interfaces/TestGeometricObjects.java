@@ -1,6 +1,6 @@
 /*
  * Huu Hung Nguyen
- * 09/02/2022
+ * 09/04/2022
  * Assignment 1
  * Design a new Triangle class extends abstract GeometricObject class.
  * Write a test program prompts the user for three sides of the triangle,
@@ -44,42 +44,40 @@ public class TestGeometricObjects {
             }
         }
 
-        // Declare and initialize the geometric object triangle
-        GeometricObject geoObject1 = new Triangle(side1, side2, side3);
-
         // Prompt the user for the color and set it
         System.out.print("What is the color of the triangle: ");
         String color = input.next();
-        geoObject1.setColor(color);
 
         // Prompt the user for being filled and set it
-        System.out.print("Is the triangle filled(true/false)?: ");
-        boolean isFilled = input.nextBoolean();
-        geoObject1.setFilled(isFilled);
+        System.out.print("Is the triangle filled (true/false)?: ");
+        boolean filled = input.nextBoolean();
+
+        // Declare and initialize the geometric object triangle
+        GeometricObject triangleObject = new Triangle(side1, side2, side3,
+                                                        color, filled);
 
         System.out.println(); // new line
 
         // Display triangle
         System.out.println("Triangle:");
-        displayGeometricObject(geoObject1);
+        displayGeometricObject(triangleObject);
 
         // Declare and initialize the geometric object circle
-        GeometricObject geoObject2 = new Circle(2);
-        geoObject2.setColor("yellow");
-        geoObject2.setFilled(true);
+        GeometricObject circleObject = new Circle(2, "yellow", true);
 
         // Display circle
         System.out.println("Circle:");
-        displayGeometricObject(geoObject2);
+        displayGeometricObject(circleObject);
 
         // Declare and initialize the geometric object rectangle
-        GeometricObject geoObject3 = new Rectangle(2, 4);
-        geoObject3.setColor("red");
-        geoObject3.setFilled(false);
+        GeometricObject rectanObject = new Rectangle(2, 4, "red", false);
 
         // Display rectangle
         System.out.println("Rectangle:");
-        displayGeometricObject(geoObject3);
+        displayGeometricObject(rectanObject);
+
+        // Close the scanner
+        input.close();
     }
   
     /** A method for displaying a geometric object */
@@ -159,10 +157,13 @@ class Triangle extends GeometricObject {
     public Triangle() {
     }
     
-    public Triangle(double side1, double side2, double side3) {
+    public Triangle(double side1, double side2, double side3, String color,
+                    boolean filled) {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
+        setColor(color);
+        setFilled(filled);
     }
   
     /** Return first side */
@@ -214,8 +215,10 @@ class Circle extends GeometricObject {
     public Circle() {
     }
 
-    public Circle(double radius) {
+    public Circle(double radius, String color, boolean filled) {
         this.radius = radius;
+        setColor(color);
+        setFilled(filled);
     }
 
     /** Return radius */
@@ -242,12 +245,6 @@ class Circle extends GeometricObject {
     public double getPerimeter() {
         return 2 * radius * Math.PI;
     }
-
-    /* Print the circle info */
-    public void printCircle() {
-        System.out.println("The circle is created " + getDateCreated() +
-        " and the radius is " + radius);
-    }
 }
 
 class Rectangle extends GeometricObject {
@@ -257,9 +254,12 @@ class Rectangle extends GeometricObject {
     public Rectangle() {
     }
   
-    public Rectangle(double width, double height) {
+    public Rectangle(double width, double height, String color, 
+                        boolean filled) {
         this.width = width;
         this.height = height;
+        setColor(color);
+        setFilled(filled);
     }
   
     /** Return width */
