@@ -1,6 +1,6 @@
 /*
  * Huu Hung Nguyen
- * 09/04/2022
+ * 09/06/2022
  * Assignment 1
  * Design a new Triangle class extends abstract GeometricObject class.
  * Write a test program prompts the user for three sides of the triangle,
@@ -157,8 +157,7 @@ class Triangle extends GeometricObject {
     public Triangle() {
     }
     
-    public Triangle(double side1, double side2, double side3, String color,
-                    boolean filled) {
+    public Triangle(double side1, double side2, double side3, String color, boolean filled) {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
@@ -199,8 +198,7 @@ class Triangle extends GeometricObject {
     @Override /** Return area */
     public double getArea() {
         double semi = (side1 + side2 + side3) / 2.0;
-        return Math.sqrt(semi * (semi - side1) * (semi - side2) * 
-            (semi - side3));
+        return Math.sqrt(semi * (semi - side1) * (semi - side2) * (semi - side3));
     }
 
     @Override /** Return perimeter */
@@ -254,8 +252,7 @@ class Rectangle extends GeometricObject {
     public Rectangle() {
     }
   
-    public Rectangle(double width, double height, String color, 
-                        boolean filled) {
+    public Rectangle(double width, double height, String color, boolean filled) {
         this.width = width;
         this.height = height;
         setColor(color);
