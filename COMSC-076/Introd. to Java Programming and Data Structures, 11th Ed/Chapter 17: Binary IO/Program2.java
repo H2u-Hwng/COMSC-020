@@ -1,6 +1,7 @@
 import java.io.*;
 
 class Program2 {
+    
     public static void main(String[] args) throws Exception {
         File file = new File("testOutput.dat");
         
@@ -20,6 +21,7 @@ class Program2 {
         public BitOutputStream(File file) throws IOException {
             output = new FileOutputStream(file);
         }
+        
         // Writes a string of bits to the output stream
         public void writeBit(String bitString) throws IOException {
             for (int i = 0; i < bitString.length(); i++) {
@@ -41,7 +43,7 @@ class Program2 {
             }
         }
 
-     /** Write the last byte and close the stream. If the last byte is not full, right-shfit with zeros         */
+        /** Write the last byte and close the stream. If the last byte is not full, right-shfit with zeros */
         public void close() throws IOException {  
          // Check whether the bit values are greater // than 0 or not
 
