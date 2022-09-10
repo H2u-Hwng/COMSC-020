@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class MakingExact {
+public class MakingExact {
     
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -10,10 +10,8 @@ class MakingExact {
         
         double[] bills = {100, 50, 20, 10, 5, 1, 0.5, 0.25, 0.1, 0.01};
         
-        
-        
         for (double n: bills) {
-            if (money > n) {
+            if (money >= n) {
                 int count = (int) (money / n);
                
                 if (money >= 1 && count > 1) {
@@ -25,9 +23,10 @@ class MakingExact {
                 } else {
                     System.out.printf("%d %.0f-cent coin \n", count, n*100);
                 }
+
+                money -= count * n;
+                money = Double.parseDouble(String.format("%.2f", money));
             }
-            
-            money %= n;
         }
     }
 }
