@@ -1,6 +1,6 @@
 /*
  * Huu Hung Nguyen
- * 09/12/2022
+ * 09/11/2022
  * Assignment 2
  * Implement a class named BitOutputStream for writing bits to a file.
  * The writeBit(char bit) method stores the bit in a byte variable.
