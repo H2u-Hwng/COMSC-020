@@ -1,6 +1,6 @@
 /*
  * Huu Hung Nguyen
- * 09/15/2022
+ * 09/16/2022
  * Assignment 3
  * Write a recursive method that displays a string in reverse order.
  * The program has the method call a helper method 
