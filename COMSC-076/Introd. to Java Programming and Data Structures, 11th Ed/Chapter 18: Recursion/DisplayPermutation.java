@@ -2,6 +2,7 @@
  * Huu Hung Nguyen
  * 09/16/2022
  * Assignment 3
+ * The program prompts the user to enter a string of characters.
  * Write a recursive method to print all permutations of a string.
  * write a program prompting the user to enter a string of characters,
  * and displays all of its permutations.
@@ -9,7 +10,7 @@
 
 import java.util.Scanner;
 
-public class Program2 {
+public class DisplayPermutation {
     /** Main method */
     public static void main(String[] args) {
         // Create a scanner
