@@ -2,14 +2,14 @@
  * Huu Hung Nguyen
  * 09/16/2022
  * Assignment 3
+ * The program promptes the user to enter a string.
  * Write a recursive method that displays a string in reverse order.
- * The program has the method call a helper method 
- * that includes the string's high index.
+ * The program has the method call a helper method that includes the string's high index.
  */
 
 import java.util.Scanner;
 
-public class Program1 {
+public class ReverseDisplay {
     /** Main method */
     public static void main(String[] args) {
         // Create a scanner
