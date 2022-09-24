@@ -36,15 +36,15 @@ public class SortArrayList {
     }
 
     public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
-        Comparable currentMin;
+        E currentMin;
         int currentMinIndex;
         
-        for (int i = 0; i < list.length() − 1; i++) {
+        for (int i = 0; i < list.size() − 1; i++) {
             // Find the minimum in the list[i+1..list.length−2]
             currentMin = list[i];
             currentMinIndex = i;
 
-            for (int j = i + 1; j < list.length(); j++) {
+            for (int j = i + 1; j < list.size(); j++) {
                 if (currentMin.compareTo(list[j]) > 0) {
                     currentMin = list[j];
                     currentMinIndex = j;
