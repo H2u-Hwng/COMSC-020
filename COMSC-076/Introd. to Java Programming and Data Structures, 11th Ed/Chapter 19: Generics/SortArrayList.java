@@ -1,35 +1,39 @@
+/*
+ *
+ */
+
 import java.util.*;
 
 public class SortArrayList {
-
+    /** Main method */
     public static void main(String[] args) {
-        // Create an Integer array
+        // Create an Integer ArrayList
         ArrayList<Integer> intArray = new ArrayList<>();
         intArray.add(2);
         intArray.add(4);
         intArray.add(3);
         
-        // Create a Double array
+        // Create a Double ArrayList
         ArrayList<Double> doubleArray = new ArrayList<>();
         doubleArray.add(3.4);
         doubleArray.add(1.2);
         doubleArray.add(-12.3);
         
-        // Create a String array
+        // Create a String ArrayList
         ArrayList<String> stringArray = new ArrayList<>();
         stringArray.add("Bob");
         stringArray.add("Alice");
         stringArray.add("Ted");
         stringArray.add("Carol");
                   
-        // Sort the arrays
-        Collections.sort(intArray);
-
+        // Sort the ArrayLists
+        sort(intArray);
+        
         sort(doubleArray);
-
+        
         sort(stringArray);
 
-        // Display the sorted arrays
+        // Display the sorted ArrayLists
         System.out.print("Sorted Integer Objects: ");
         printList(intArray);
 
@@ -38,68 +42,37 @@ public class SortArrayList {
 
         System.out.print("Sorted String Objects: ");
         printList(stringArray);
-
     }
-
+    
+    /** Sort all elements in the ArrayList */
     public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
-
-
+        E minElement;
+        int minIndex;
+        
         for (int i = 0; i < list.size() - 1; i++) {
-            E currentMin = list.get(i);
-            int min = i;
+            minElement = list.get(i);
+            minIndex = i;
+            
             for (int j = i + 1; j < list.size(); j++) {
-
-                if (list.get(j).compareTo(currentMin) < 0) {
+                if (list.get(j).compareTo(minElement) < 0) {
                     currentMin = list.get(j);
-                    min = j;
+                    minIndex = j;
                 }
             }
-
-            if (min != i) {
-                list.set(min, list.get(i));
-                list.set(i, currentMin);
+            
+            // Swap the element at i with the one at minIndex if necessary;
+            if (minIndex != i) {
+                list.set(minIndex, list.get(i));
+                list.set(i, minElement);
             }
         }
     }
     
-    /** Print an array of objects */
+    /** Print all elements in the ArrayList */
     public static void printList(ArrayList list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
-        System.out.println();
+        System.out.println(); // new line
     }
 }
-
-
-
-    public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
-        E currentMin;
-        int currentMinIndex;
-        
-        for (int i = 0; i < list.size() − 1; i++) {
-            // Find the minimum in the list[i+1..list.length−2]
-            currentMin = list[i];
-            currentMinIndex = i;
-
-            for (int j = i + 1; j < list.size(); j++) {
-                if (currentMin.compareTo(list[j]) > 0) {
-                    currentMin = list[j];
-                    currentMinIndex = j;
-                }
-            }
-
-            // Swap list[i] with list[currentMinIndex] if necessary;
-            if (currentMinIndex != i) {
-                list[currentMinIndex] = list[i];
-                list[i] = currentMin;
-            }
-        }
-    }
-  
-
-}
-
-
-
-
