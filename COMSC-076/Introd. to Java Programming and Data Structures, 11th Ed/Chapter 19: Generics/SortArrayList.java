@@ -1,5 +1,10 @@
-/*
- *
+/* 
+ * Huu Hung Nguyen
+ * 09/26/2022
+ * Assignment 4
+ * Write a Generics method that sorts an ArrayList.
+ * The program tests the method with three different arrays: Integer,
+ * Double, and String.
  */
 
 import java.util.*;
@@ -55,12 +60,12 @@ public class SortArrayList {
             
             for (int j = i + 1; j < list.size(); j++) {
                 if (list.get(j).compareTo(minElement) < 0) {
-                    currentMin = list.get(j);
+                    minElement = list.get(j);
                     minIndex = j;
                 }
             }
             
-            // Swap the element at i with the one at minIndex if necessary;
+            // Swap the element at i with the one at minIndex if necessary
             if (minIndex != i) {
                 list.set(minIndex, list.get(i));
                 list.set(i, minElement);
@@ -69,7 +74,7 @@ public class SortArrayList {
     }
     
     /** Print all elements in the ArrayList */
-    public static void printList(ArrayList list) {
+    public static <E> void printList(ArrayList<E> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
