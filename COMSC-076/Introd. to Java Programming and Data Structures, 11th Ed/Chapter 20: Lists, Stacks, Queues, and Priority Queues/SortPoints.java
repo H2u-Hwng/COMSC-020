@@ -10,18 +10,28 @@ public class SortPoints {
             points[i].x = Math.random() * 100;
             points[i].y = Math.random() * 100;
         }
+        
+        // Sort by x-coordinates
+        Arrays.sort(points);
+        System.out.println("Points sorted on x-coordinates");
+        for (Point p : points) {
+            System.out.println(p.toString());
+        }
+        
+        System.out.println(); // New line
+        
+        // Sort by y-coordinates
+        Arrays.sort(points, new CompareY());
+        System.out.println("Points sorted on y-coordinates");
+        for (Point p : points) {
+            System.out.println(p.toString());
+        }
     }
 
     static class Point implements Comparable<Point> {
-    
         double x;
         double y;
-      
-        Point(double x, double y) {
-    	this.x = x;
-    	this.y = y;
-        }
-    
+        
         public double getX() {
             return x;
         }		
@@ -31,7 +41,7 @@ public class SortPoints {
     	}
       
         @Override
-        public double compareTo(Point p) {
+        public int compareTo(Point p) {
     	    if (x != p.x) {
                 return (x > p.x) ? 1 : -1;
     	    } else {
@@ -53,6 +63,6 @@ public class SortPoints {
     	    } else {
     	        return (p1.x > p2.x) ? 1 : (p1.x == p2.x) ? 0 : -1;
     	    }
-    }
+        }
     }
 }
