@@ -1,22 +1,23 @@
 /* 
  * Huu Hung Nguyen
- * 10/07/2022
+ * 10/10/2022
  * Assignment 5
- * Define a class named Point with two data fields x and y to represent a point's x- and y-coordinates.
- * Implement the Comparable interface for the comparing the points on x-coordinates.
- * If two points have the same x-coordinates, compare their y-coordinates.
- * Define a class named CompareY that implements Comparator<Point>.
- * Implement the compare method to compare two points on their y-coordinates.
- * If two points have the same y-coordinates, compare their x-coordinates.
- * Randomly create 100 points and apply the Arrays.sort method to display the points
- * in increasing order of their x-coordinates, and increasing order of their y-coordinates, respectively.
+ * Define a class named Point with two data fields x and y to represent 
+ * a point's x- and y-coordinates. Implement the Comparable interface for
+ * the comparing the points on x-coordinates. If two points have the same
+ * x-coordinates, compare their y-coordinates.
+ * Define a class named CompareY that implements Comparator<Point>. Implement
+ * the compare method to compare two points on their y-coordinates. If two
+ * points have the same y-coordinates, compare their x-coordinates.
+ * Randomly create 100 points and apply the Arrays.sort method to display the
+ * points in increasing order of their x-coordinates, and increasing order of
+ * their y-coordinates, respectively.
  */
-
 
 import java.util.*;
 
 public class SortPoints {
-
+    /** Main method */
     public static void main(String[] args) {
         // Create 100 random points
         Point[] points = new Point[100];
@@ -43,6 +44,8 @@ public class SortPoints {
         }
     }
 
+    /** Compare the points on x-coordinates. 
+        If same x-coordinates, compare their y-coordinates. */
     static class Point implements Comparable<Point> {
         double x;
         double y;
@@ -70,6 +73,8 @@ public class SortPoints {
         }
     }
     
+    /** Compare two points on their y-coordinates.
+        If same y-coordinates, compare their x-coordinates. */
     static class CompareY implements Comparator<Point> {
         @Override
         public int compare(Point p1, Point p2) {
