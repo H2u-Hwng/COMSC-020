@@ -3,12 +3,18 @@ import java.util.*;
 public class CountOccurrenceOfWords {
     
     public static void main(String[] args) throws Exception {
-        // //Check command-line argument length
-        // if(args.length != 1) {
-        //     System.out.println("Usage: Excersice Chapter 21textFileName");System.exit(1);}
+        //Check command-line argument length
+        if(args.length != 1) {
+            System.out.println("Usage: Excersice Chapter 21textFileName");
+            System.exit(1);
+        }
             
-        // //Check if file is exist
-        // File file = new File(args[0]);if(!file.exists()) {
+        //Check if file is exist
+        File file = new File(args[0]);
+        if(!file.exists()) {
+            System.out.println("The file " + args[0] + " does not exists.");
+            System.exit(1);
+        }
         
         // Set text in a string
         String text = "Good morning. Have a good class. " +
