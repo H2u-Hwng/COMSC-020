@@ -1,3 +1,15 @@
+/*
+ * Huu Hung Nguyen
+ * 10/18/2022
+ * Assignment 6
+ * The program reads the text from a text file.
+ * The text file is passed as a command-line argument.
+ * Words are delimited by whitespace characters, punctuation marks (, ; . : ?),
+ * quotation marks (' "), and parentheses.
+ * Count the words in a case-sensitive fashion. The words must start with a letter.
+ * Display the output of words in alphabetical order, with each word preceded by the number of times it occurs. 
+ */
+
 import java.util.*;
 
 public class CountOccurrenceOfWords {
