@@ -37,12 +37,37 @@ public class FindClosestPair {
     }
     
     static class Pair {
+        // Data fields
+        Point p1;
+        Point p2;
         
+        public Point getP1() {
+            return p1;
+        }
+        
+        public Point getP2() {
+            return p2;
+        }
+        
+        public double getDistance() {
+            return distance(p1, p2);
+        }
+        
+        /** Compute the distance between two points p1 and p2 */
+        public static double distance(Point p1, Point p2) {
+            return distance(p1.x, p1.y, p2.x, p2.y);
+        }
+        
+        /** Compute the distance between points (x1, y1) and (x2, y2) */
+        public static double distance(double x1, double y1, double x2, double y2) {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
     }
     
     /** Compare the points on x-coordinates. 
         If same x-coordinates, compare their y-coordinates. */
     static class Point implements Comparable<Point> {
+        // Data fields
         double x;
         double y;
         
