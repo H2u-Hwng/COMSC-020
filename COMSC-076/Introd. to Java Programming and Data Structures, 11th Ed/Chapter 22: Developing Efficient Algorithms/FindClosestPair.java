@@ -53,6 +53,17 @@ public class FindClosestPair {
             return distance(p1, p2);
         }
         
+        /** Return the distance of the closest pair of points */
+        public static Pair getClosestPair(double[][] points) {
+            Point[] pointPair = new Point[points.length];
+            
+            for (int i = 0; i < points.length; i++) {
+			    pointsPair[i] = new Point(points[i][0], points[i][1]);
+		    }
+            
+		    return getClosestPair(pointsPair);
+        }
+        
         /** Compute the distance between two points p1 and p2 */
         public static double distance(Point p1, Point p2) {
             return distance(p1.x, p1.y, p2.x, p2.y);
