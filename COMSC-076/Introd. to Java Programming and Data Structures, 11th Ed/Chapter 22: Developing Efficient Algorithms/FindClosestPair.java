@@ -15,7 +15,7 @@ public class FindClosestPair {
         
         starting = System.currentTimeMillis(); // get the starting time
         
-        // Sort by x-coordinates
+        
         Arrays.sort(points);
         System.out.println("Points sorted on x-coordinates");
         // for (Point p : points) {
@@ -24,7 +24,7 @@ public class FindClosestPair {
         
         System.out.println(); // New line
         
-        // Sort by y-coordinates
+        
         Arrays.sort(points, new CompareY());
         System.out.println("Points sorted on y-coordinates");
         // for (Point p : points) {
@@ -55,13 +55,32 @@ public class FindClosestPair {
         
         /** Return the distance of the closest pair of points */
         public static Pair getClosestPair(double[][] points) {
-            Point[] pointPair = new Point[points.length];
+            Point[] pointsPair = new Point[points.length];
             
             for (int i = 0; i < points.length; i++) {
-			    pointsPair[i] = new Point(points[i][0], points[i][1]);
-		    }
+		pointsPair[i] = new Point(points[i][0], points[i][1]);
+	    }
             
-		    return getClosestPair(pointsPair);
+	    return getClosestPair(pointsPair);
+        }
+        
+        /** Return the distance of the closest pair of points */
+        public static Pair getClosestPair(Point[] points) {
+            // Sort by x-coordinates
+            Arrays.sort(points); 
+            
+            // Sort by y-coordinates
+	    Point[] pointsOrderedOnY = points.clone(); 
+	    Arrays.sort(pointsOrderedOnY, new CompareY());
+		    
+	    return distance(points, 0, points.length - 1, pointsOrderedOnY);
+        }
+        
+        /** Return the distance of the closest pair of points in pointsOrderedOnX[low, high]. 
+	    This is a recursive method. pointsOrderedOnX and pointsOrderedOnY are not changed
+	    in the subsequent recursive calls.*/
+        public static Pair distance(Point[] pointsOrderedOnX, int low, int high, Point[] pointsOrderedOnY) {
+            
         }
         
         /** Compute the distance between two points p1 and p2 */
