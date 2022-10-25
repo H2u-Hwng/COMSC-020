@@ -2,49 +2,31 @@ import java.util.*;
 
 public class FindClosestPair {
     /** Main method */
-    public static void main(String[] args) {
-        // Create 100 random points
-        Point[] p = new Point[100];
-        for (int i = 0; i < p.length; i++) {
-            p[i] = new Point();
-            p[i].x = Math.random() * 100;
-            p[i].y = Math.random() * 100;
-        }
-
-        double[][] p1 = new double[100][2];
-        for (int i = 0; i < p1.length; i++) {
-            p1[i][0] = p[i].x;
-            p1[i][1] = p[i].y;
+    public static void main(String[] args) {    
+        // Create an array to store 100 random points    
+        double[][] points = new double[100][2];
+        for (int i = 0; i < points.length; i++) {
+            points[i][0] = Math.random() * 100;
+            points[i][1] = Math.random() * 100;
         }
         
         long starting, ending;
         
-        starting = System.currentTimeMillis(); // get the starting time
+        starting = System.currentTimeMillis(); // get starting time
         
-	    System.out.println("Test with 1 dimentional array: ");
-        System.out.println(); // new line
+        for (int row = 0; row < points.length; row++) { 
+			System.out.println("("+ points[row][0] +" , "+ points[row][1]+")"); 
+		}
 
-	    Pair pair = Pair.getClosestPair(p);
+	    Pair pair = Pair.getClosestPair(points);
 
-        System.out.print("The shortest distance is " + pair.getDistance());
-        System.out.print(" beween the points " + pair.getP1());
-        System.out.println(" and " + pair.getP2());
-
-			// System.out.println("Test with 2-dimentional array: ");
-			
-			// for (int row = 0; row < p1.length; row++) 
-			// { 
-			// 	   System.out.println("("+ p1[row][0] +" , "+ p1[row][1]+")"); 
-			// }
-			//    Pair pair1 = Pair.getClosestPair(p1);
-			//    System.out.println("The closet pair:");
-			//     System.out.println(pair1.getP1());
-			// 	System.out.println(pair1.getP2());
-			// 	System.out.println("Distance: " + format.format(pair1.getDistance()));
+        // Display result
+        System.out.println("The shortest distance is " + pair.getDistance() +
+            " beween the points " + pair.getP1() + " and " + pair.getP2());
         
         ending = System.currentTimeMillis(); // get ending time
         
-        System.out.println(); // New line
+        System.out.println(); // new line
 
         System.out.print("Time spent on the divide-and-conquer algorithm is");
         System.out.println(" " + (ending - starting) + " milliseconds");
@@ -74,38 +56,34 @@ public class FindClosestPair {
         
         /** Return the distance of the closest pair of points */
         public static Pair getClosestPair(double[][] points) {
-            Point[] pointsPair = new Point[points.length];
+            Point[] points2 = new Point[points.length];
             
             for (int i = 0; i < points.length; i++) {
-		        pointsPair[i] = new Point(points[i][0], points[i][1]);
+		        points2[i] = new Point(points[i][0], points[i][1]);
 	        }
             
-	    return getClosestPair(pointsPair);
+	        return getClosestPair(points2);
         }
         
         /** Return the distance of the closest pair of points */
         public static Pair getClosestPair(Point[] points) {
-            // Sort by x-coordinates
-            Arrays.sort(points); 
+            Arrays.sort(points); // Sort by x-coordinates
             
-            // Sort by y-coordinates
-	    Point[] pointsOrderedOnY = points.clone(); 
-	    Arrays.sort(pointsOrderedOnY, new CompareY());
+	        Point[] pointsOrderedOnY = points.clone(); 
+	        Arrays.sort(pointsOrderedOnY, new CompareY()); // Sort by y-coordinates
 		    
-	    return distance(points, 0, points.length - 1, pointsOrderedOnY);
+	        return distance(points, 0, points.length - 1, pointsOrderedOnY);
         }
         
         /** Return the distance of the closest pair of points in pointsOrderedOnX[low, high]. 
 	    This is a recursive method. pointsOrderedOnX and pointsOrderedOnY are not changed
 	    in the subsequent recursive calls.*/
         public static Pair distance(Point[] pointsOrderedOnX, int low, int high, Point[] pointsOrderedOnY) {
-            if(low >= high) 
-		{
-			return null;
-		} else if (low + 1 == high) 
-		{
-			return new Pair(pointsOrderedOnX[low], pointsOrderedOnX[high]); // only 1 pair present
-		}
+            if(low >= high) {
+			    return null;
+		    } else if (low + 1 == high) {
+			    return new Pair(pointsOrderedOnX[low], pointsOrderedOnX[high]); // only 1 pair present
+		    }
 		
 		/*
 		 * Divide S into two subsets, S1 and S2, of equal size using the midpoint in the sorted list. 
@@ -162,8 +140,7 @@ public class FindClosestPair {
 		//create list stripL and stripR to hold the points
 		ArrayList<Point> stripL = new ArrayList<Point>();
 		ArrayList<Point> stripR = new ArrayList<Point>();
-		for (int i = 0; i < pointsOrderedOnY.length; i++) 
-		{
+		for (int i = 0; i < pointsOrderedOnY.length; i++) {
 			if ((pointsOrderedOnY[i].getX() <= pointsOrderedOnX[midPoint].getX())&&
 					(pointsOrderedOnX[midPoint].getX() - pointsOrderedOnY[i].getX() <= d)) 
 			{
@@ -223,8 +200,9 @@ public class FindClosestPair {
         }
         
         /** Compute the distance between points (x1, y1) and (x2, y2) */
-        public static double distance(double x1, double y1, double x2, double y2) {
-            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        public static double distance(double x1, double y1, 
+                                      double x2, double y2) {
+            return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         }
     }
     
@@ -235,6 +213,12 @@ public class FindClosestPair {
         double x;
         double y;
         
+        // Constructor
+	    public Point(double x, double y) {
+		    this.x = x;
+		    this.y = y;
+	    }
+
         public double getX() {
             return x;
         }		
