@@ -14,11 +14,11 @@ public class FindClosestPair {
         
         starting = System.currentTimeMillis(); // get starting time
         
-        for (int row = 0; row < points.length; row++) { 
-			System.out.println("("+ points[row][0] +" , "+ points[row][1]+")"); 
-		}
+        // for (int row = 0; row < points.length; row++) { 
+		// 	System.out.println("("+ points[row][0] +" , "+ points[row][1]+")"); 
+		// }
 
-	    Pair pair = Pair.getClosestPair(points);
+	Pair pair = Pair.getClosestPair(points);
 
         // Display result
         System.out.println("The shortest distance is " + pair.getDistance() +
@@ -28,8 +28,8 @@ public class FindClosestPair {
         
         System.out.println(); // new line
 
-        System.out.print("Time spent on the divide-and-conquer algorithm is");
-        System.out.println(" " + (ending - starting) + " milliseconds");
+        System.out.println("Time spent on the divide-and-conquer algorithm " +
+                           "is " + (ending - starting) + " milliseconds");
     }
     
     static class Pair {
@@ -85,113 +85,71 @@ public class FindClosestPair {
 			    return new Pair(pointsOrderedOnX[low], pointsOrderedOnX[high]); // only 1 pair present
 		    }
 		
-		/*
-		 * Divide S into two subsets, S1 and S2, of equal size using the midpoint in the sorted list. 
-		 * Let the midpoint be in S1. Recursively find the closest pair in S1 and S2. 
-		 * Let d1: leftPair.getDistance()
-		 * and d2: rightPair.getDistance()
-		 * denote the distance of the closest pairs in the two subsets, respectively.
-		 */
-		int midPoint = (low + high) / 2; // divide into 2 subset 
-		
-		 // return the closet pair on the left side( including midpoint) - S1
-		Pair leftPair = distance(pointsOrderedOnX, low, midPoint, pointsOrderedOnY);
-		// return the closet pair on the right side( not including midpoint) - S2
-		Pair rightPair = distance(pointsOrderedOnX, midPoint + 1, high, pointsOrderedOnY);
-		
-		double d = 0;
-		Pair p = null;
+            int midIndex = (low + high) / 2; // divide into 2 subset 
+            
+            // return the closet pair on the left side( including midpoint) - S1
+            Pair s1 = distance(pointsOrderedOnX, low, midIndex, pointsOrderedOnY);
+            // return the closet pair on the right side( not including midpoint) - S2
+            Pair s2 = distance(pointsOrderedOnX, midIndex + 1, high, pointsOrderedOnY);
+        
+            double d = 0;
+            Pair closestPair = null;
 
-		if (leftPair == null && rightPair == null)  // no pairs present on both sides
-		{
-			d = 0;
-			p = null;
-		} else if (leftPair == null)  // no pairs on the left side, then the right pair is the shortest
-		{
-			d = rightPair.getDistance(); // get d2
-			p = rightPair;
-		} else if (rightPair == null) // no pairs on the right side, then the left pair is the shortest
-		{
-			d = leftPair.getDistance(); //get d1
-			p = leftPair;
-		} else 
-		{
-			// get the minimum distance of d1 and d2: d = min(d1,d2)
-			d = Math.min(leftPair.getDistance(), rightPair.getDistance());
-			// get the point that has minimum distance d
-			if(leftPair.getDistance() <= rightPair.getDistance())
-			{
-				p =leftPair;
-			}else
-			{
-				p=rightPair;
-			}
-			
-		}
-		/*
-		 * Obtaining stripL and stripR algorithm
-		 * for each point p in pointsOrderedOnY
-				if (p is in S1 and mid.x – p.x <= d) 
-					append p to stripL;
-				else if (p is in S2 and p.x - mid.x <= d) 
-					append p to stripR;
-		 */
-		
-		//create list stripL and stripR to hold the points
-		ArrayList<Point> stripL = new ArrayList<Point>();
-		ArrayList<Point> stripR = new ArrayList<Point>();
-		for (int i = 0; i < pointsOrderedOnY.length; i++) {
-			if ((pointsOrderedOnY[i].getX() <= pointsOrderedOnX[midPoint].getX())&&
-					(pointsOrderedOnX[midPoint].getX() - pointsOrderedOnY[i].getX() <= d)) 
-			{
-				stripL.add(pointsOrderedOnY[i]);
-			}else if((pointsOrderedOnY[i].getX() > pointsOrderedOnX[midPoint].getX()) &&
-						(pointsOrderedOnY[i].getX() - pointsOrderedOnX[midPoint].getX() <=d ))
-			{
-				stripR.add(pointsOrderedOnY[i]);
-			}
-		}
+            if (s1 == null) {
+                // no pairs on the left side, then the right pair is the shortest
+                d = s2.getDistance();
+                closestPair = s2;
+            } else if (s2 == null) {
+                // no pairs on the right side, then the left pair is the shortest
+                d = s1.getDistance();
+                closestPair = s1;
+            } else {
+                double d1 = s1.getDistance();
+                double d2 = s2.getDistance();
 
-		/*
-		 * finding the closet pair algorithm
-		 * d = min(d1, d2);
- 		   r = 0; // r is the index of a point in stripR 
- 		   for (each point p in stripL) 
- 		   {
-				// Skip the points in stripR below p.y - d
-				while (r < stripR.length && q[r].y <= p.y - d) r++;
-				let r1 = r;
-				while (r1 < stripR.length && |q[r1].y – p.y| <= d) 
-				{
-					// Check if (p, q[r1]) is a possible closest pair
-					if (distance(p, q[r1]) < d) {
-					d = distance(p, q[r1]);
-					(p, q[r1]) is now the current closest pair;
-      			}
-			r1 = r1 + 1 ;
-			}
-		 */
-		
-		int r = 0;
-		for (int i = 0; i < stripL.size(); i++) 
-		{
-			while (r < stripR.size() && stripR.get(r).getY() <= stripL.get(i).getY() - d) 
-			{
-				r++;
-			}
-			int r1 = r;
-			while (r1 < stripR.size() && Math.abs(stripR.get(r1).getY() - stripL.get(i).getY()) <=  d) 
-			{
-				if (distance(stripL.get(i), stripR.get(r1)) < d) {
-					d = distance(stripL.get(i), stripR.get(r1));
-					p.p1 = stripL.get(i);
-					p.p2 = stripR.get(r1);
-				}
-				r1++;
-			}
-		}
+                d = Math.min(d1, d2); // get the minimum distance of d1 and d2
 
-		return p;
+                // get the point that has minimum distance d
+                if (d1 <= d2) {
+                    closestPair = s1;
+                } else {
+                    closestPair = s2;
+                }
+            }
+		
+            //create list stripL and stripR to hold the points
+            ArrayList<Point> stripL = new ArrayList<Point>();
+            ArrayList<Point> stripR = new ArrayList<Point>();
+            for (Point p: pointsOrderedOnY) {
+                Point mid = pointsOrderedOnX[midIndex];
+
+                if ((p.x <= mid.x) && (mid.x - p.x <= d)) {
+                    stripL.add(p);
+                } else if((p.x > mid.x) && (p.x - mid.x <= d)) {
+                    stripR.add(p);  
+                }
+            }
+
+            int r = 0; // r is the index of a point in stripR
+
+            for (Point p: stripL) {
+                while (r < stripR.size() && stripR.get(r).y <= p.y - d) {
+                    r++;
+                }
+
+                int r1 = r;
+                while (r1 < stripR.size() && Math.abs(stripR.get(r1).y - p.y) <=  d) {
+                    if (distance(p, stripR.get(r1)) < d) {
+                        d = distance(p, stripR.get(r1));
+                        closestPair.p1 = p;
+                        closestPair.p2 = stripR.get(r1);
+                    }
+
+                    r1++;
+                }
+            }
+
+		    return closestPair;
         }
         
         /** Compute the distance between two points p1 and p2 */
