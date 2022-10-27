@@ -1,3 +1,19 @@
+/*
+ * Huu Hung Nguyen
+ * 10/27/2022
+ * Assignment 7
+ * Sort the points in increasing order of x-coordinates. For the points
+ * with the same x-coordinates, sort on y-coordinates. The result should
+ * be a sorted collection of points denoted by S.
+ * Divide S into two subsets, S1 and S2, of equal size about the midpoint
+ * of the sorted list S. Include the midpoint in S1. Recursively find the
+ * closest pair in S1 and S2. Let d1 and d2 denote the distance of closest
+ * pairs in the two subsets, respectively.
+ * Find the closest pair between a point in S1 and a point in S2 and denote
+ * the distance between them as d3. The closest pair is the one with distance
+ * equal to the minimum of {d1, d2, d3}.
+ */
+
 import java.util.*;
 
 public class FindClosestPair {
@@ -10,33 +26,28 @@ public class FindClosestPair {
             points[i][1] = Math.random() * 100;
         }
         
-        long starting, ending;
-        
-        starting = System.currentTimeMillis(); // get starting time
-        
-        // for (int row = 0; row < points.length; row++) { 
-		// 	System.out.println("("+ points[row][0] +" , "+ points[row][1]+")"); 
-		// }
+        long startTime = System.currentTimeMillis(); // get starting time
 
-	Pair pair = Pair.getClosestPair(points);
+	    Pair pair = Pair.getClosestPair(points);
 
         // Display result
         System.out.println("The shortest distance is " + pair.getDistance() +
             " beween the points " + pair.getP1() + " and " + pair.getP2());
         
-        ending = System.currentTimeMillis(); // get ending time
+        long endTime = System.currentTimeMillis(); // get ending time
         
         System.out.println(); // new line
 
         System.out.println("Time spent on the divide-and-conquer algorithm " +
-                           "is " + (ending - starting) + " milliseconds");
+                           "is " + (endTime - startTime) + " milliseconds");
     }
     
     static class Pair {
         // Data fields
         Point p1;
         Point p2;
-
+        
+        // Constructor
         public Pair(Point p1, Point p2) {
             this.p1 = p1;
             this.p2 = p2;
@@ -69,57 +80,67 @@ public class FindClosestPair {
         public static Pair getClosestPair(Point[] points) {
             Arrays.sort(points); // Sort by x-coordinates
             
-	        Point[] pointsOrderedOnY = points.clone(); 
-	        Arrays.sort(pointsOrderedOnY, new CompareY()); // Sort by y-coordinates
+            // Sort by y-coordinates
+	        Point[] pointsOrderedOnY = points.clone();
+	        Arrays.sort(pointsOrderedOnY, new CompareY());
 		    
 	        return distance(points, 0, points.length - 1, pointsOrderedOnY);
         }
         
-        /** Return the distance of the closest pair of points in pointsOrderedOnX[low, high]. 
-	    This is a recursive method. pointsOrderedOnX and pointsOrderedOnY are not changed
-	    in the subsequent recursive calls.*/
-        public static Pair distance(Point[] pointsOrderedOnX, int low, int high, Point[] pointsOrderedOnY) {
+        /** Return the distance of the closest pair of points in
+            pointsOrderedOnX[low, high]. This is a recursive method.
+            pointsOrderedOnX and pointsOrderedOnY are not changed in the
+            subsequent recursive calls. */
+        public static Pair distance(Point[] pointsOrderedOnX, int low,
+                                    int high, Point[] pointsOrderedOnY) {
             if(low >= high) {
 			    return null;
 		    } else if (low + 1 == high) {
-			    return new Pair(pointsOrderedOnX[low], pointsOrderedOnX[high]); // only 1 pair present
+                // only 1 pair present
+			    return new Pair(pointsOrderedOnX[low],pointsOrderedOnX[high]);
 		    }
-		
-            int midIndex = (low + high) / 2; // divide into 2 subset 
             
-            // return the closet pair on the left side( including midpoint) - S1
-            Pair s1 = distance(pointsOrderedOnX, low, midIndex, pointsOrderedOnY);
-            // return the closet pair on the right side( not including midpoint) - S2
-            Pair s2 = distance(pointsOrderedOnX, midIndex + 1, high, pointsOrderedOnY);
+            // divide into 2 subsets, s1 and s2
+            int midIndex = (low + high) / 2; 
+            
+            // The closet pair on the left side(include midpoint), s1
+            Pair s1 = distance(pointsOrderedOnX, low, 
+                               midIndex, pointsOrderedOnY);
+    
+            // The closet pair on the right side(not include midpoint), s2
+            Pair s2 = distance(pointsOrderedOnX, midIndex + 1,
+                               high, pointsOrderedOnY);
         
             double d = 0;
             Pair closestPair = null;
-
-            if (s1 == null) {
-                // no pairs on the left side, then the right pair is the shortest
+            
+            // no pairs on both sides
+            if (s1 == null && s2 == null) {
+                d = 0;
+                closestPair = null;
+            } else if (s1 == null) {
+                // no pairs on the left side, the right pair is the shortest
                 d = s2.getDistance();
                 closestPair = s2;
             } else if (s2 == null) {
-                // no pairs on the right side, then the left pair is the shortest
+                // no pairs on the right side, the left pair is the shortest
                 d = s1.getDistance();
                 closestPair = s1;
             } else {
                 double d1 = s1.getDistance();
                 double d2 = s2.getDistance();
 
-                d = Math.min(d1, d2); // get the minimum distance of d1 and d2
-
+                // get the minimum distance of d1 and d2
+                d = Math.min(d1, d2); 
+                
                 // get the point that has minimum distance d
-                if (d1 <= d2) {
-                    closestPair = s1;
-                } else {
-                    closestPair = s2;
-                }
+                closestPair = (d1 <= d2) ? s1 : s2;
             }
 		
             //create list stripL and stripR to hold the points
             ArrayList<Point> stripL = new ArrayList<Point>();
             ArrayList<Point> stripR = new ArrayList<Point>();
+
             for (Point p: pointsOrderedOnY) {
                 Point mid = pointsOrderedOnX[midIndex];
 
@@ -138,7 +159,9 @@ public class FindClosestPair {
                 }
 
                 int r1 = r;
-                while (r1 < stripR.size() && Math.abs(stripR.get(r1).y - p.y) <=  d) {
+                while (r1 < stripR.size() && 
+                       Math.abs(stripR.get(r1).y - p.y) <=  d) {
+                    // Check if (p, q[r1] is a possible closest pair
                     if (distance(p, stripR.get(r1)) < d) {
                         d = distance(p, stripR.get(r1));
                         closestPair.p1 = p;
