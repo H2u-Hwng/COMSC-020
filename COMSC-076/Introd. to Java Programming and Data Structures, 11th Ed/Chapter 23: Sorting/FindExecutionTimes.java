@@ -1,29 +1,42 @@
+import java.util.*;
+
 public class FindExecutionTimes {
     public static void main(String[] args) {
-        long startTime, endTime;
+        // int[] sizes = {50000, 100000, 150000, 200000, 250000, 300000};
+        int[] sizes = {20};
         
-        startTime = System.currentTimeMillis(); 
-        
-        double[] list = {-2, 4.5, 5, 1, 2, -3.3};
-        selectionSort(list);
-        for (int i = 0; i < list.length; i++)
-            System.out.print(list[i] + " ");
+        for (int size: sizes) {
+            double[] list = new double[size];
             
-        endTime = System.currentTimeMillis(); 
-
-        System.out.println();
-        System.out.println(endTime - startTime);
+            for (int i = 0; i < size; i++) {
+                list[i] = Math.random() * size;
+            }
+            
+            long startTime, endTime;
         
-        startTime = System.currentTimeMillis(); 
-        
-        double[] list2 = {-2, 4.5, 5, 1, 2, -3.3};
-        quickSort(list2);
-        for (int i = 0; i < list.length; i++)
-            System.out.print(list[i] + " ");
-        
-        endTime = System.currentTimeMillis(); 
-        System.out.println();
-        System.out.println(endTime - startTime);
+            startTime = System.currentTimeMillis(); 
+            
+            selectionSort(list);
+            for (int i = 0; i < list.length; i++)
+                System.out.print(list[i] + " ");
+                
+            endTime = System.currentTimeMillis(); 
+            
+            System.out.println();
+            System.out.println(endTime - startTime);
+            
+            Collections.shuffle(Arrays.asList(list));
+            
+            startTime = System.currentTimeMillis(); 
+    
+            quickSort(list);
+            for (int i = 0; i < list.length; i++)
+                System.out.print(list[i] + " ");
+            
+            endTime = System.currentTimeMillis(); 
+            System.out.println();
+            System.out.println(endTime - startTime);
+        }
     }
     
     /** The method for sorting the numbers */
