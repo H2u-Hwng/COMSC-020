@@ -2,8 +2,10 @@ import java.util.*;
 
 public class FindExecutionTimes {
     public static void main(String[] args) {
-        // int[] sizes = {50000, 100000, 150000, 200000, 250000, 300000};
-        int[] sizes = {20};
+        System.out.println("Array size  |  Selection   Merge   Quick   Heap   Radix");
+        System.out.println("-------------------------------------------------------");
+        
+        int[] sizes = {50000, 100000, 150000, 200000, 250000, 300000};
         
         for (int size: sizes) {
             double[] list = new double[size];
@@ -12,31 +14,41 @@ public class FindExecutionTimes {
                 list[i] = Math.random() * size;
             }
             
+            System.out.print(size + "     ");
+            
             long startTime, endTime;
         
             startTime = System.currentTimeMillis(); 
-            
             selectionSort(list);
-            for (int i = 0; i < list.length; i++)
-                System.out.print(list[i] + " ");
-                
-            endTime = System.currentTimeMillis(); 
+            endTime = System.currentTimeMillis();
             
-            System.out.println();
-            System.out.println(endTime - startTime);
+            System.out.print((endTime - startTime) + "\t");
             
-            Collections.shuffle(Arrays.asList(list));
+            shuffle(list);
             
             startTime = System.currentTimeMillis(); 
-    
             quickSort(list);
-            for (int i = 0; i < list.length; i++)
-                System.out.print(list[i] + " ");
-            
             endTime = System.currentTimeMillis(); 
-            System.out.println();
+            System.out.print((endTime - startTime) + "\t");
+            
+            shuffle(list);
+            
+            startTime = System.currentTimeMillis(); 
+            heapSort(list);
+            endTime = System.currentTimeMillis(); 
             System.out.println(endTime - startTime);
         }
+    }
+    
+    public static void shuffle(double[] list) {
+        Random rand = new Random();
+		
+		for (int i = 0; i < list.length; i++) {
+			int randomIndexToSwap = rand.nextInt(list.length);
+			double temp = list[randomIndexToSwap];
+			list[randomIndexToSwap] = list[i];
+			list[i] = temp;
+		}
     }
     
     /** The method for sorting the numbers */
@@ -108,4 +120,102 @@ public class FindExecutionTimes {
             return first;
         }
     }
+    
+     /** Heap sort method */
+  public static <E extends Comparable<E>> void heapSort(E[] list) {
+    // Create a Heap of integers
+    Heap<E> heap = new Heap<>();
+
+    // Add elements to the heap
+    for (int i = 0; i < list.length; i++)
+      heap.add(list[i]);
+
+    // Remove elements from the heap
+    for (int i = list.length - 1; i >= 0; i--)
+      list[i] = heap.remove();
+  }
+  
+  
+static class Heap<E extends Comparable<E>> {
+  private java.util.ArrayList<E> list = new java.util.ArrayList<>();
+
+  /** Create a default heap */
+  public Heap() {
+  }
+
+  /** Create a heap from an array of objects */
+  public Heap(E[] objects) {
+    for (int i = 0; i < objects.length; i++)
+      add(objects[i]);
+  }
+
+  /** Add a new object into the heap */
+  public void add(E newObject) {
+    list.add(newObject); // Append to the heap
+    int currentIndex = list.size() - 1; // The index of the last node
+
+    while (currentIndex > 0) {
+      int parentIndex = (currentIndex - 1) / 2;
+      // Swap if the current object is greater than its parent
+      if (list.get(currentIndex).compareTo(
+          list.get(parentIndex)) > 0) {
+        E temp = list.get(currentIndex);
+        list.set(currentIndex, list.get(parentIndex));
+        list.set(parentIndex, temp);
+      }
+      else
+        break; // the tree is a heap now
+
+      currentIndex = parentIndex;
+    }
+  }
+
+  /** Remove the root from the heap */
+  public E remove() {
+    if (list.size() == 0) return null;
+
+    E removedObject = list.get(0);
+    list.set(0, list.get(list.size() - 1));
+    list.remove(list.size() - 1);
+
+    int currentIndex = 0;
+    while (currentIndex < list.size()) {
+      int leftChildIndex = 2 * currentIndex + 1;
+      int rightChildIndex = 2 * currentIndex + 2;
+
+      // Find the maximum between two children
+      if (leftChildIndex >= list.size()) break; // The tree is a heap
+      int maxIndex = leftChildIndex;
+      if (rightChildIndex < list.size()) {
+        if (list.get(maxIndex).compareTo(
+            list.get(rightChildIndex)) < 0) {
+          maxIndex = rightChildIndex;
+        }
+      }
+
+      // Swap if the current node is less than the maximum
+      if (list.get(currentIndex).compareTo(
+          list.get(maxIndex)) < 0) {
+        E temp = list.get(maxIndex);
+        list.set(maxIndex, list.get(currentIndex));
+        list.set(currentIndex, temp);
+        currentIndex = maxIndex;
+      }
+      else
+        break; // The tree is a heap
+    }
+
+    return removedObject;
+  }
+
+  /** Get the number of nodes in the tree */
+  public int getSize() {
+    return list.size();
+  }
+  
+  /** Return true if heap is empty */
+  public boolean isEmpty() {
+    return list.size() == 0;
+  }
+}
 }
