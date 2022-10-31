@@ -5,126 +5,166 @@ public class FindExecutionTimes {
         System.out.println("Array size  |  Selection   Merge   Quick   Heap   Radix");
         System.out.println("-------------------------------------------------------");
         
-        int[] sizes = {50000, 100000, 150000, 200000, 250000, 300000};
-        
-        for (int size: sizes) {
-            double[] list = new double[size];
+        for (int size = 50000; size <= 300000; size += 50000) {
+            int[] list = new int[size];
             
             for (int i = 0; i < size; i++) {
-                list[i] = Math.random() * size;
+                list[i] = (int) (Math.random() * 5000000);
             }
             
             System.out.print(size + "     ");
             
             long startTime, endTime;
-        
-            startTime = System.currentTimeMillis(); 
-            selectionSort(list);
-            endTime = System.currentTimeMillis();
+            int[] temp;
             
+            temp = list.clone();
+            startTime = System.currentTimeMillis(); 
+            selectionSort(temp);
+            endTime = System.currentTimeMillis();
             System.out.print((endTime - startTime) + "\t");
             
-            shuffle(list);
-            
+            temp = list.clone();
             startTime = System.currentTimeMillis(); 
-            quickSort(list);
+            mergeSort(temp);
+            endTime = System.currentTimeMillis();
+            System.out.print((endTime - startTime) + "\t");
+            
+            temp = list.clone();
+            startTime = System.currentTimeMillis(); 
+            quickSort(temp);
             endTime = System.currentTimeMillis(); 
             System.out.print((endTime - startTime) + "\t");
             
-            shuffle(list);
-            
+            temp = list.clone();
             startTime = System.currentTimeMillis(); 
-            heapSort(list);
+            heapSort(temp);
+            endTime = System.currentTimeMillis(); 
+            System.out.print(endTime - startTime + "\t");
+            
+            temp = list.clone();
+            startTime = System.currentTimeMillis(); 
+            radixSort(temp, 10000);
             endTime = System.currentTimeMillis(); 
             System.out.println(endTime - startTime);
         }
     }
     
-    public static void shuffle(double[] list) {
-        Random rand = new Random();
-		
-		for (int i = 0; i < list.length; i++) {
-			int randomIndexToSwap = rand.nextInt(list.length);
-			double temp = list[randomIndexToSwap];
-			list[randomIndexToSwap] = list[i];
-			list[i] = temp;
-		}
+    /** The method for sorting the numbers */
+  public static void selectionSort(int[] list) {
+    for (int i = 0; i < list.length - 1; i++) {
+      // Find the minimum in the list[i..list.length-1]
+      int currentMin = list[i];
+      int currentMinIndex = i;
+
+      for (int j = i + 1; j < list.length; j++) {
+        if (currentMin > list[j]) {
+          currentMin = list[j];
+          currentMinIndex = j;
+        }
+      }
+
+      // Swap list[i] with list[currentMinIndex] if necessary;
+      if (currentMinIndex != i) {
+        list[currentMinIndex] = list[i];
+        list[i] = currentMin;
+      }
     }
+  }
+
     
     /** The method for sorting the numbers */
-    public static void selectionSort(double[] list) {
-        for (int i = 0; i < list.length - 1; i++) {
-            // Find the minimum in the list[i..list.length-1]
-            double currentMin = list[i];
-            int currentMinIndex = i;
-    
-            for (int j = i + 1; j < list.length; j++) {
-                if (currentMin > list[j]) {
-                    currentMin = list[j];
-                    currentMinIndex = j;
-                }
-            }
-    
-            // Swap list[i] with list[currentMinIndex] if necessary;
-            if (currentMinIndex != i) {
-                list[currentMinIndex] = list[i];
-                list[i] = currentMin;
-            }
-        }
+  public static void mergeSort(int[] list) {
+    if (list.length > 1) {
+      // Merge sort the first half
+      int[] firstHalf = new int[list.length / 2];
+      System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
+      mergeSort(firstHalf);
+
+      // Merge sort the second half
+      int secondHalfLength = list.length - list.length / 2;
+      int[] secondHalf = new int[secondHalfLength];
+      System.arraycopy(list, list.length / 2,
+        secondHalf, 0, secondHalfLength);
+      mergeSort(secondHalf);
+
+      // Merge firstHalf with secondHalf into list
+      merge(firstHalf, secondHalf, list);
     }
-    
-    public static void quickSort(double[] list) {
-        quickSort(list, 0, list.length - 1);
+  }
+
+  /** Merge two sorted lists */
+  public static void merge(int[] list1, int[] list2, int[] temp) {
+    int current1 = 0; // Current index in list1
+    int current2 = 0; // Current index in list2
+    int current3 = 0; // Current index in temp
+
+    while (current1 < list1.length && current2 < list2.length) {
+      if (list1[current1] < list2[current2])
+        temp[current3++] = list1[current1++];
+      else
+        temp[current3++] = list2[current2++];
     }
 
-    private static void quickSort(double[] list, int first, int last) {
-        if (last > first) {
-            int pivotIndex = partition(list, first, last);
-            quickSort(list, first, pivotIndex - 1);
-            quickSort(list, pivotIndex + 1, last);
-        }
+    while (current1 < list1.length)
+      temp[current3++] = list1[current1++];
+
+    while (current2 < list2.length)
+      temp[current3++] = list2[current2++];
+  }
+    
+    public static void quickSort(int[] list) {
+    quickSort(list, 0, list.length - 1);
+  }
+
+  private static void quickSort(int[] list, int first, int last) {
+    if (last > first) {
+      int pivotIndex = partition(list, first, last);
+      quickSort(list, first, pivotIndex - 1);
+      quickSort(list, pivotIndex + 1, last);
+    }
+  }
+
+  /** Partition the array list[first..last] */
+  private static int partition(int[] list, int first, int last) {
+    int pivot = list[first]; // Choose the first element as the pivot
+    int low = first + 1; // Index for forward search
+    int high = last; // Index for backward search
+
+    while (high > low) {
+      // Search forward from left
+      while (low <= high && list[low] <= pivot)
+        low++;
+
+      // Search backward from right
+      while (low <= high && list[high] > pivot)
+        high--;
+
+      // Swap two elements in the list
+      if (high > low) {
+        int temp = list[high];
+        list[high] = list[low];
+        list[low] = temp;
+      }
     }
 
-    /** Partition the array list[first..last] */
-    private static int partition(double[] list, int first, int last) {
-        double pivot = list[first]; // Choose the first element as the pivot
-        int low = first + 1; // Index for forward search
-        int high = last; // Index for backward search
-    
-        while (high > low) {
-            // Search forward from left
-            while (low <= high && list[low] <= pivot)
-                low++;
+    while (high > first && list[high] >= pivot)
+      high--;
 
-            // Search backward from right
-            while (low <= high && list[high] > pivot)
-                high--;
-
-            // Swap two elements in the list
-            if (high > low) {
-                double temp = list[high];
-                list[high] = list[low];
-                list[low] = temp;
-            }
-        }
-
-        while (high > first && list[high] >= pivot)
-            high--;
-
-        // Swap pivot with list[high]
-        if (pivot > list[high]) {
-            list[first] = list[high];
-            list[high] = pivot;
-            return high;
-        } else {
-            return first;
-        }
+    // Swap pivot with list[high]
+    if (pivot > list[high]) {
+      list[first] = list[high];
+      list[high] = pivot;
+      return high;
     }
+    else {
+      return first;
+    }
+  }
     
-     /** Heap sort method */
-  public static <E extends Comparable<E>> void heapSort(E[] list) {
+   /** Heap sort method */
+  public static void heapSort(int[] list) {
     // Create a Heap of integers
-    Heap<E> heap = new Heap<>();
+    Heap<Integer> heap = new Heap<>();
 
     // Add elements to the heap
     for (int i = 0; i < list.length; i++)
@@ -134,7 +174,6 @@ public class FindExecutionTimes {
     for (int i = list.length - 1; i >= 0; i--)
       list[i] = heap.remove();
   }
-  
   
 static class Heap<E extends Comparable<E>> {
   private java.util.ArrayList<E> list = new java.util.ArrayList<>();
@@ -218,4 +257,28 @@ static class Heap<E extends Comparable<E>> {
     return list.size() == 0;
   }
 }
+    
+    public  static void radixSort(int[] list, int maxOrder) {
+  for (int order = 1; order < maxOrder; order *= 10) {
+   @SuppressWarnings("unchecked")
+   ArrayList<Integer>[] bucket = new ArrayList[10];
+   
+   for (int i = 0; i < bucket.length; i++) {
+    bucket[i] = new java.util.ArrayList<>();
+   }
+   
+   for (int i = 0; i < list.length; i++) {
+    bucket[(list[i] / order) % 10].add(list[i]);
+   }
+   
+   int k = 0;
+   for (int i = 0; i < bucket.length; i++) {
+    if (bucket[i] != null) {
+     for (int j = 0; j < bucket[i].size(); j++)
+      list[k++] = bucket[i].get(j);
+    }
+   }
+  }
+ }
+
 }
