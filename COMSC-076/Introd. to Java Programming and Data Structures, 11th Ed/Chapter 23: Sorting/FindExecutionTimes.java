@@ -2,8 +2,10 @@ import java.util.*;
 
 public class FindExecutionTimes {
     public static void main(String[] args) {
-        System.out.println("Array size  |  Selection   Merge   Quick   Heap   Radix");
-        System.out.println("-------------------------------------------------------");
+        System.out.println("Array size  |  Selection      Merge" +
+                           "      Quick       Heap      Radix");
+        System.out.println("-----------------------------------" +
+                           "---------------------------------");
         
         for (int size = 50000; size <= 300000; size += 50000) {
             int[] list = new int[size];
@@ -11,8 +13,8 @@ public class FindExecutionTimes {
             for (int i = 0; i < size; i++) {
                 list[i] = (int) (Math.random() * 5000000);
             }
-            
-            System.out.print(size + "     ");
+
+            System.out.printf("%," + 12 + "d|", size);
             
             long startTime, endTime;
             int[] temp;
@@ -21,76 +23,78 @@ public class FindExecutionTimes {
             startTime = System.currentTimeMillis(); 
             selectionSort(temp);
             endTime = System.currentTimeMillis();
-            System.out.print((endTime - startTime) + "\t");
+            System.out.printf("%," + 11 + "d", endTime - startTime);
             
             temp = list.clone();
             startTime = System.currentTimeMillis(); 
             mergeSort(temp);
             endTime = System.currentTimeMillis();
-            System.out.print((endTime - startTime) + "\t");
+            System.out.printf("%," + 11 + "d", endTime - startTime);
             
             temp = list.clone();
             startTime = System.currentTimeMillis(); 
             quickSort(temp);
             endTime = System.currentTimeMillis(); 
-            System.out.print((endTime - startTime) + "\t");
+            System.out.printf("%," + 11 + "d", endTime - startTime);
             
             temp = list.clone();
             startTime = System.currentTimeMillis(); 
             heapSort(temp);
             endTime = System.currentTimeMillis(); 
-            System.out.print(endTime - startTime + "\t");
+            System.out.printf("%," + 11 + "d", endTime - startTime);
             
             temp = list.clone();
             startTime = System.currentTimeMillis(); 
             radixSort(temp, 10000);
             endTime = System.currentTimeMillis(); 
-            System.out.println(endTime - startTime);
+            System.out.printf("%," + 11 + "d", endTime - startTime);
+
+            System.out.println(); // new line
         }
     }
-    
-    /** The method for sorting the numbers */
-  public static void selectionSort(int[] list) {
-    for (int i = 0; i < list.length - 1; i++) {
-      // Find the minimum in the list[i..list.length-1]
-      int currentMin = list[i];
-      int currentMinIndex = i;
 
-      for (int j = i + 1; j < list.length; j++) {
-        if (currentMin > list[j]) {
-          currentMin = list[j];
-          currentMinIndex = j;
+    /** The method for sorting the numbers */
+    public static void selectionSort(int[] list) {
+        for (int i = 0; i < list.length - 1; i++) {
+            // Find the minimum in the list[i..list.length-1]
+            int currentMin = list[i];
+            int currentMinIndex = i;
+
+            for (int j = i + 1; j < list.length; j++) {
+                if (currentMin > list[j]) {
+                    currentMin = list[j];
+                    currentMinIndex = j;
+                }
+            }
+
+            // Swap list[i] with list[currentMinIndex] if necessary;
+            if (currentMinIndex != i) {
+                list[currentMinIndex] = list[i];
+                list[i] = currentMin;
+            }
         }
-      }
-
-      // Swap list[i] with list[currentMinIndex] if necessary;
-      if (currentMinIndex != i) {
-        list[currentMinIndex] = list[i];
-        list[i] = currentMin;
-      }
     }
-  }
 
     
     /** The method for sorting the numbers */
-  public static void mergeSort(int[] list) {
-    if (list.length > 1) {
-      // Merge sort the first half
-      int[] firstHalf = new int[list.length / 2];
-      System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
-      mergeSort(firstHalf);
+    public static void mergeSort(int[] list) {
+        if (list.length > 1) {
+            // Merge sort the first half
+            int[] firstHalf = new int[list.length / 2];
+            System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
+            mergeSort(firstHalf);
 
-      // Merge sort the second half
-      int secondHalfLength = list.length - list.length / 2;
-      int[] secondHalf = new int[secondHalfLength];
-      System.arraycopy(list, list.length / 2,
-        secondHalf, 0, secondHalfLength);
-      mergeSort(secondHalf);
+            // Merge sort the second half
+            int secondHalfLength = list.length - list.length / 2;
+            int[] secondHalf = new int[secondHalfLength];
+            System.arraycopy(list, list.length / 2,
+                             secondHalf, 0, secondHalfLength);
+            mergeSort(secondHalf);
 
-      // Merge firstHalf with secondHalf into list
-      merge(firstHalf, secondHalf, list);
+            // Merge firstHalf with secondHalf into list
+            merge(firstHalf, secondHalf, list);
+        }
     }
-  }
 
   /** Merge two sorted lists */
   public static void merge(int[] list1, int[] list2, int[] temp) {
@@ -280,5 +284,4 @@ static class Heap<E extends Comparable<E>> {
    }
   }
  }
-
 }
