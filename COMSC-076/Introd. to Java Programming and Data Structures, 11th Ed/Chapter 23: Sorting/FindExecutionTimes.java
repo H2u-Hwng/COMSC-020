@@ -22,7 +22,7 @@ public class FindExecutionTimes {
             int[] list = new int[size];
             
             for (int i = 0; i < size; i++) {
-                list[i] = (int) (Math.random() * 5000000);
+                list[i] = (int) (Math.random() * 6000000);
             }
 
             System.out.printf("%," + 12 + "d|", size);
@@ -56,7 +56,7 @@ public class FindExecutionTimes {
             
             temp = list.clone();
             startTime = System.currentTimeMillis(); 
-            radixSort(temp, 10000);
+            radixSort(temp, 6000000);
             endTime = System.currentTimeMillis(); 
             System.out.printf("%," + 11 + "d", endTime - startTime);
 
@@ -215,7 +215,8 @@ public class FindExecutionTimes {
             while (currentIndex > 0) {
                 int parentIndex = (currentIndex - 1) / 2;
                 // Swap if the current object is greater than its parent
-                if (list.get(currentIndex).compareTo(list.get(parentIndex)) > 0) {
+                if (list.get(currentIndex).compareTo(
+                    list.get(parentIndex)) > 0) {
                     E temp = list.get(currentIndex);
                     list.set(currentIndex, list.get(parentIndex));
                     list.set(parentIndex, temp);
@@ -249,13 +250,15 @@ public class FindExecutionTimes {
 
                 int maxIndex = leftChildIndex;
                 if (rightChildIndex < list.size()) {
-                    if (list.get(maxIndex).compareTo(list.get(rightChildIndex)) < 0) {
+                    if (list.get(maxIndex).compareTo(
+                        list.get(rightChildIndex)) < 0) {
                         maxIndex = rightChildIndex;
                     }
                 }
 
                 // Swap if the current node is less than the maximum
-                if (list.get(currentIndex).compareTo(list.get(maxIndex)) < 0) {
+                if (list.get(currentIndex).compareTo(
+                    list.get(maxIndex)) < 0) {
                     E temp = list.get(maxIndex);
                     list.set(maxIndex, list.get(currentIndex));
                     list.set(currentIndex, temp);
@@ -281,7 +284,6 @@ public class FindExecutionTimes {
       
     public static void radixSort(int[] list, int maxOrder) {
         for (int order = 1; order < maxOrder; order *= 10) {
-            @SuppressWarnings("unchecked")
             ArrayList<Integer>[] bucket = new ArrayList[10];
     
             for (int i = 0; i < bucket.length; i++) {
